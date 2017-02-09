@@ -6,7 +6,10 @@ import com.kangyonggan.app.myth.biz.service.ContentService;
 import com.kangyonggan.app.myth.biz.service.DictionaryService;
 import com.kangyonggan.app.myth.biz.service.UserService;
 import com.kangyonggan.app.myth.model.constants.DictionaryType;
-import com.kangyonggan.app.myth.model.vo.*;
+import com.kangyonggan.app.myth.model.vo.Attachment;
+import com.kangyonggan.app.myth.model.vo.Content;
+import com.kangyonggan.app.myth.model.vo.Dictionary;
+import com.kangyonggan.app.myth.model.vo.ShiroUser;
 import com.kangyonggan.app.myth.web.controller.BaseController;
 import com.kangyonggan.app.myth.web.util.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
@@ -42,9 +45,6 @@ public class DashboardContentContentController extends BaseController {
 
     @Autowired
     private AttachmentService attachmentService;
-
-    @Autowired
-    private FileUpload fileUpload;
 
     /**
      * 列表界面
@@ -87,7 +87,7 @@ public class DashboardContentContentController extends BaseController {
     /**
      * 保存内容
      *
-     * @param attachments
+     * @param files
      * @param content
      * @param result
      * @return
@@ -96,17 +96,18 @@ public class DashboardContentContentController extends BaseController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     @RequiresPermissions("CONTENT_CONTENT")
     @ResponseBody
-    public Map<String, Object> save(@RequestParam(value = "attachment[]", required = false) List<MultipartFile> attachments,
+    public Map<String, Object> save(@RequestParam(value = "file[]", required = false) List<MultipartFile> files,
                                     @ModelAttribute("content") @Valid Content content, BindingResult result) throws Exception {
         Map<String, Object> resultMap = getResultMap();
+        ShiroUser shiroUser = userService.getShiroUser();
 
         if (!result.hasErrors()) {
-            List<Attachment> files = null;
-            if (attachments != null && !attachments.isEmpty()) {
-                files = uploadAttachments(attachments);
+            List<Attachment> attachments = null;
+            if (files != null && !files.isEmpty()) {
+                attachments = uploadFiles(shiroUser.getUsername(), "content", files);
             }
 
-            contentService.saveContentWithAttachments(content, files);
+            contentService.saveContentWithAttachments(content, attachments);
         } else {
             setResultMapFailure(resultMap);
         }
@@ -133,7 +134,7 @@ public class DashboardContentContentController extends BaseController {
     /**
      * 更新内容
      *
-     * @param attachments
+     * @param files
      * @param content
      * @param result
      * @return
@@ -142,17 +143,18 @@ public class DashboardContentContentController extends BaseController {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @RequiresPermissions("CONTENT_CONTENT")
     @ResponseBody
-    public Map<String, Object> update(@RequestParam(value = "attachment[]", required = false) List<MultipartFile> attachments,
+    public Map<String, Object> update(@RequestParam(value = "file[]", required = false) List<MultipartFile> files,
                                       @ModelAttribute("content") @Valid Content content, BindingResult result) throws Exception {
         Map<String, Object> resultMap = getResultMap();
+        ShiroUser shiroUser = userService.getShiroUser();
 
         if (!result.hasErrors()) {
-            List<Attachment> files = null;
-            if (attachments != null && !attachments.isEmpty()) {
-                files = uploadAttachments(attachments);
+            List<Attachment> attachments = null;
+            if (files != null && !files.isEmpty()) {
+                attachments = uploadFiles(shiroUser.getUsername(), "content", files);
             }
 
-            contentService.updateContentWithAttachments(content, files);
+            contentService.updateContentWithAttachments(content, attachments);
         } else {
             setResultMapFailure(resultMap);
         }
@@ -188,35 +190,4 @@ public class DashboardContentContentController extends BaseController {
         attachmentService.deleteAttachment(aid, id, "content");
         return getResultMap();
     }
-
-    /**
-     * 上传附件
-     *
-     * @param attachments
-     * @return
-     * @throws FileUploadException
-     */
-    private List<Attachment> uploadAttachments(List<MultipartFile> attachments) throws FileUploadException {
-        List<Attachment> files = new ArrayList();
-
-        ShiroUser user = userService.getShiroUser();
-
-        for (MultipartFile file : attachments) {
-            if (file.isEmpty()) {
-                continue;
-            }
-
-            String path = fileUpload.upload(file);
-
-            Attachment attachment = new Attachment();
-            attachment.setPath(path);
-            attachment.setCreateUsername(user.getUsername());
-            attachment.setName(file.getOriginalFilename());
-            attachment.setType("content");
-
-            files.add(attachment);
-        }
-        return files;
-    }
-
 }

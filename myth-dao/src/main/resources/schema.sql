@@ -312,6 +312,62 @@ CREATE UNIQUE INDEX id_UNIQUE
 CREATE INDEX create_ix
   ON attachment (created_time);
 
+-- ----------------------------
+--  Table structure for article
+-- ----------------------------
+DROP TABLE
+IF EXISTS article;
+
+CREATE TABLE article
+(
+  id              BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  title           VARCHAR(64)                           NOT NULL
+  COMMENT '文章标题',
+  tags            VARCHAR(512)                          NOT NULL
+  COMMENT '标签',
+  content         LONGTEXT                              NOT NULL
+  COMMENT '文章内容',
+  create_username VARCHAR(20)                           NOT NULL
+  COMMENT '创建人',
+  create_fullname VARCHAR(32)                           NOT NULL
+  COMMENT '创建人姓名',
+  is_deleted      TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time    TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time    TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '文章表';
+CREATE UNIQUE INDEX id_UNIQUE
+  ON article (id);
+CREATE INDEX create_ix
+  ON article (created_time);
+
+-- ----------------------------
+--  Table structure for dictionary_medi
+-- ----------------------------
+DROP TABLE
+IF EXISTS dictionary_medi;
+
+CREATE TABLE dictionary_medi
+(
+  id              BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  source_id       BIGINT(20)                            NOT NULL
+  COMMENT '来源ID',
+  dictionary_code VARCHAR(32)                           NOT NULL
+  COMMENT '字典代码',
+  type            VARCHAR(16)                           NOT NULL
+  COMMENT '类型'
+)
+  COMMENT '字典中间表';
+CREATE UNIQUE INDEX id_UNIQUE
+  ON dictionary_medi (id);
+CREATE UNIQUE INDEX sdt_UNIQUE
+  ON dictionary_medi (source_id, dictionary_code, type);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -320,8 +376,10 @@ CREATE INDEX create_ix
 INSERT INTO user
 (username, email, mobile, password, salt, fullname)
 VALUES
-  ('admin', 'kangyonggan@gmail.com', '15121149571', '9606b0029ba4a8c9369f288cced0dc465eb5eabd', '3685072edcf8aad8',
-   '管理员');
+  ('admin', '', '', '9606b0029ba4a8c9369f288cced0dc465eb5eabd', '3685072edcf8aad8',
+   '管理员'),
+  ('kangyonggan', 'kangyonggan@gmail.com', '15121149571', '9606b0029ba4a8c9369f288cced0dc465eb5eabd',
+   '3685072edcf8aad8', '康永敢');
 
 -- ----------------------------
 --  data for user_profile
@@ -329,7 +387,8 @@ VALUES
 INSERT INTO user_profile
 (username, phone, id_card, qq, weixin, address, web_site)
 VALUES
-  ('admin', '021-63898580', '340321199112273095', '316071722', 'Brave_Kang', '上海市松江区九亭镇云润家园', 'http://kangyonggan.com');
+  ('admin', '', '', '', '', '', ''),
+  ('kangyonggan', '021-63898580', '340321199112273095', '316071722', 'Brave_Kang', '上海市松江区九亭镇云润家园', 'http://kangyonggan.com');
 
 -- ----------------------------
 --  data for role
@@ -358,15 +417,22 @@ VALUES
   ('CONTENT_DICTIONARY', '数据字典', 'CONTENT', 'content/dictionary', 1, ''),
   ('CONTENT_CONTENT', '内容管理', 'CONTENT', 'content/content', 2, ''),
 
+  ('QUERY', '查询', 'DASHBOARD', 'query', 2, 'menu-icon fa fa-search'),
+  ('QUERY_SMS', '短信查询', 'QUERY', 'query/sms', 0, ''),
+  ('QUERY_ARTICLE', '文章查询', 'QUERY', 'query/article', 1, ''),
+
   ('USER', '我的', 'DASHBOARD', 'user', 3, 'menu-icon fa fa-user'),
-  ('USER_PROFILE', '个人资料', 'USER', 'user/profile', 0, '');
+  ('USER_PROFILE', '个人资料', 'USER', 'user/profile', 0, ''),
+  ('USER_MOBILE', '手机认证', 'USER', 'user/mobile', 1, ''),
+  ('USER_ARTICLE', '我的文章', 'USER', 'user/article', 2, '');
 
 -- ----------------------------
 --  data for user_role
 -- ----------------------------
 INSERT INTO user_role
 VALUES
-  ('admin', 'ROLE_ADMIN');
+  ('admin', 'ROLE_ADMIN'),
+  ('kangyonggan', 'ROLE_USER');
 
 -- ----------------------------
 --  data for role_menu

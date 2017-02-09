@@ -4,36 +4,30 @@ import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.fileupload.FileUploadException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * @author kangyonggan
  * @since 2016/12/6
  */
-@Component
 public class Images {
 
-    @Autowired
-    private FileUpload fileUpload;
-
     //大Logo
-    public String large(String source) throws FileUploadException {
+    public static String large(String source) throws FileUploadException {
         return thumbnails(source, "l", 200, 200);
     }
 
     //中Logo
-    public String middle(String source) throws FileUploadException {
+    public static String middle(String source) throws FileUploadException {
         return thumbnails(source, "m", 128, 128);
     }
 
     //小Logo
-    public String small(String source) throws FileUploadException {
+    public static String small(String source) throws FileUploadException {
         return thumbnails(source, "s", 64, 64);
     }
 
-    private String thumbnails(String source, String suffix, int width, int height) throws FileUploadException {
-        String desc = fileUpload.extractFilePath(source, suffix);
+    private static String thumbnails(String source, String suffix, int width, int height) throws FileUploadException {
+        String desc = FileUpload.extractFilePath(source, suffix);
 
         try {
             Thumbnails.of(PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + source)

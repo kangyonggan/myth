@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kangyonggan.app.myth.mapper.ArticleMapper">
+    <resultMap id="BaseResultMap" type="com.kangyonggan.app.myth.model.vo.Article">
+        <!--
+          WARNING - @mbggenerated
+        -->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="tags" property="tags" jdbcType="VARCHAR"/>
+        <result column="create_username" property="createUsername" jdbcType="VARCHAR"/>
+        <result column="create_fullname" property="createFullname" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+    <select id="searchArticles" resultMap="BaseResultMap">
+        SELECT DISTINCT a.id, a.title, a.tags, a.create_username, a.create_fullname, a.is_deleted, a.created_time
+        FROM article a, dictionary_medi dm
+        <where>
+            a.id = dm.source_id
+            AND dm.type = 'tag'
+            <if test="username != null and username != ''">
+              AND a.create_username = #{username}
+            </if>
+            <if test="tag != null and tag != ''">
+              AND dm.dictionary_code = #{tag}
+            </if>
+            <if test="title != null and title != ''">
+              AND a.title LIKE CONCAT('%', #{title}, '%')
+            </if>
+        </where>
+        ORDER BY a.id DESC
+    </select>
+</mapper>

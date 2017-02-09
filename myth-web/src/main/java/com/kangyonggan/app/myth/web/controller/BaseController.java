@@ -1,9 +1,15 @@
 package com.kangyonggan.app.myth.web.controller;
 
 import com.kangyonggan.app.myth.biz.util.StringUtil;
+import com.kangyonggan.app.myth.model.vo.Attachment;
+import com.kangyonggan.app.myth.web.util.FileUpload;
 import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -93,4 +99,33 @@ public class BaseController {
         return PATH_ROOT + TABLE_TR;
     }
 
+    /**
+     * 上传附件
+     *
+     * @param username
+     * @param type
+     * @param files
+     * @return
+     * @throws FileUploadException
+     */
+    protected List<Attachment> uploadFiles(String username, String type, List<MultipartFile> files) throws FileUploadException {
+        List<Attachment> attachments = new ArrayList();
+
+        for (MultipartFile file : files) {
+            if (file.isEmpty()) {
+                continue;
+            }
+
+            String path = FileUpload.upload(file);
+
+            Attachment attachment = new Attachment();
+            attachment.setPath(path);
+            attachment.setCreateUsername(username);
+            attachment.setName(file.getOriginalFilename());
+            attachment.setType(type);
+
+            attachments.add(attachment);
+        }
+        return attachments;
+    }
 }

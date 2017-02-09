@@ -30,12 +30,6 @@ public class DashboardUserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private FileUpload fileUpload;
-
-    @Autowired
-    private Images images;
-
     /**
      * 基本信息
      *
@@ -64,12 +58,12 @@ public class DashboardUserController extends BaseController {
 
         if (!result.hasErrors() && !bindingResult.hasErrors()) {
             if (avatar != null && !avatar.isEmpty()) {
-                String fileName = fileUpload.upload(avatar);
-                String large = images.large(fileName);
+                String fileName = FileUpload.upload(avatar);
+                String large = Images.large(fileName);
                 userProfile.setLargeAvatar(large);
-                String middle = images.middle(fileName);
+                String middle = Images.middle(fileName);
                 userProfile.setMediumAvatar(middle);
-                String small = images.small(fileName);
+                String small = Images.small(fileName);
                 user.setSmallAvatar(small);
             }
 

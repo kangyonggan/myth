@@ -27,8 +27,8 @@ VALUES
   ('myth', 'local', 'redis.maxIdle', '100', 'redis最大等待数'),
   ('myth', 'local', 'redis.maxTotal', '1000', 'redis最大连接数'),
   ('myth', 'local', 'redis.minIdle', '50', 'redis最小等待数'),
-  ('myth', 'local', 'redis.password', '******', '邮件服务器用户名'),
-  ('myth', 'local', 'redis.port', '6379', 'redis密码'),
+  ('myth', 'local', 'redis.password', '******', 'redis密码'),
+  ('myth', 'local', 'redis.port', '6379', 'redis端口'),
   ('myth', 'local', 'redis.prefix', 'myth', 'redis的key的前缀'),
   ('myth', 'local', 'redis.testOnBorrow', 'true', 'redis测试支持'),
 

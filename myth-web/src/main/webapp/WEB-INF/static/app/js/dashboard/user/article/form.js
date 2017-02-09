@@ -1,5 +1,10 @@
 $(function () {
-    updateState("content/content");
+    updateState("user/article");
+
+    /**
+     * 初始化select2
+     */
+    $('.select2').select2({allowClear: true});
 
     /**
      * 初始化markdown编辑器
@@ -35,6 +40,59 @@ $(function () {
             });
         });
 
+    /**
+     * 提交
+     */
+    $("#submit").click(function () {
+        var tags = $("#tags").val();
+
+        if (!tags) {
+            Message.error("请选择标签");
+            return false;
+        }
+
+        return true;
+    });
+
+    var $form = $('#article-form');
+    var $btn = $("#submit");
+
+    $form.validate({
+        rules: {
+            title: {
+                required: true,
+                maxlength: 64
+            },
+            content: {
+                required: true
+            }
+        },
+        submitHandler: function (form, event) {
+            event.preventDefault();
+            $btn.button('loading');
+            $(form).ajaxSubmit({
+                dataType: 'json',
+                success: function (response) {
+                    if (response.errCode == 'success') {
+                        window.location.href = window.location.origin + window.location.pathname + "#user/article";
+                    } else {
+                        Message.error(response.errMsg);
+                    }
+                    $btn.button('reset');
+                },
+                error: function () {
+                    Message.error("服务器内部错误，请稍后再试。");
+                    $btn.button('reset');
+                }
+            });
+        },
+        errorPlacement: function (error, element) {
+            error.appendTo(element.parent());
+        },
+        errorElement: "div",
+        errorClass: "error"
+    });
+
     $(".remove-old").click(function () {
         var $trigger = $(this);
         var url = $trigger.data('url');
@@ -53,44 +111,5 @@ $(function () {
                 Message.error("网络错误，请稍后重试");
             })
         });
-    });
-
-    var $form = $('#content-form');
-    var $btn = $("#submit");
-
-    $form.validate({
-        rules: {
-            title: {
-                required: true,
-                maxlength: 128
-            },
-            body: {
-                required: true
-            }
-        },
-        submitHandler: function (form, event) {
-            event.preventDefault();
-            $btn.button('loading');
-            $(form).ajaxSubmit({
-                dataType: 'json',
-                success: function (response) {
-                    if (response.errCode == 'success') {
-                        window.location.href = window.location.origin + window.location.pathname + "#content/content";
-                    } else {
-                        Message.error(response.errMsg);
-                    }
-                    $btn.button('reset');
-                },
-                error: function () {
-                    Message.error("服务器内部错误，请稍后再试。");
-                    $btn.button('reset');
-                }
-            });
-        },
-        errorPlacement: function (error, element) {
-            error.appendTo(element.parent());
-        },
-        errorElement: "div",
-        errorClass: "error"
     });
 });

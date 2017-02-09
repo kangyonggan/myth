@@ -5,7 +5,7 @@
         <div class="footer-content">
 			<span class="bigger-120">
 				<span class="grey bolder">${appName}</span>
-                © 2016
+                © 2017
                 <img src="${ctx}/static/app/images/ba.png">
             <em class="hidden-xs">${appBaNo}</em>
 				Build By ${appAuthor}

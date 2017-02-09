@@ -1,13 +1,11 @@
 package com.kangyonggan.app.myth.web.util;
 
 import com.kangyonggan.app.myth.biz.util.DateUtils;
-import com.kangyonggan.app.myth.biz.util.Ftp;
 import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +18,6 @@ import java.io.IOException;
  */
 @Component
 public class FileUpload {
-
-    @Autowired
-    private Ftp ftp;
 
     /**
      * 上传文件
@@ -38,8 +33,6 @@ public class FileUpload {
                 fileName = extractFilePath(file);
                 File desc = getAbsolutePath(fileName);
                 file.transferTo(desc);
-
-                ftp.upload(fileName);
             } catch (Exception e) {
                 throw new FileUploadException("文件上传异常", e);
             }

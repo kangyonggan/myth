@@ -62,16 +62,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- dubbo -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.sgroschupf</groupId>
-            <artifactId>zkclient</artifactId>
-        </dependency>
-
         <!--redis-->
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -139,10 +129,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
         </dependency>
         <dependency>
             <groupId>org.pegdown</groupId>

@@ -1,6 +1,5 @@
 package com.kangyonggan.app.myth.web.util;
 
-import com.kangyonggan.app.myth.biz.util.Ftp;
 import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
 import net.coobird.thumbnailator.Thumbnails;
@@ -14,9 +13,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Images {
-
-    @Autowired
-    private Ftp ftp;
 
     @Autowired
     private FileUpload fileUpload;
@@ -44,8 +40,6 @@ public class Images {
                     .size(width, height)
                     .keepAspectRatio(false)
                     .toFile(PropertiesUtil.getProperties(AppConstants.FILE_PATH_ROOT) + desc);
-
-            ftp.upload(desc);
         } catch (Exception e) {
             throw new FileUploadException("文件转换异常", e);
         }

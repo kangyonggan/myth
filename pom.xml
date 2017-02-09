@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.kangyonggan.app</groupId>
@@ -7,7 +8,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <description>myth系统原型</description>
+    <description>东方娇子</description>
     <name>Module :: Parent</name>
 
     <properties>
@@ -366,24 +367,6 @@
                 <version>${log4j2.api.version}</version>
             </dependency>
 
-            <!-- dubbo -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${com.alibaba-dubbo.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>spring</artifactId>
-                        <groupId>org.springframework</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.github.sgroschupf</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>${com.github.sgroschupf-zkclient.version}</version>
-            </dependency>
-
             <!-- Redis -->
             <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -419,11 +402,6 @@
                 <version>${persistence-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>commons-net</groupId>
-                <artifactId>commons-net</artifactId>
-                <version>${commons-net.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
@@ -436,11 +414,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-  <modules>
-    <module>myth-web</module>
-    <module>myth-service</module>
-    <module>myth-biz</module>
-    <module>myth-dao</module>
-    <module>myth-model</module>
-  </modules>
+
+    <modules>
+        <module>myth-web</module>
+        <module>myth-service</module>
+        <module>myth-biz</module>
+        <module>myth-dao</module>
+        <module>myth-model</module>
+    </modules>
 </project>

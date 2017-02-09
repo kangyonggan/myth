@@ -11,13 +11,6 @@ VALUES
 
   ('myth', 'local', 'file.root.path', '/Users/kyg/data/code/20170207/myth/myth-web/src/main/webapp/WEB-INF/', '文件上传根路径'),
 
-  ('myth', 'local', 'ftp.ip', '121.40.66.176', 'ftp服务器ip'),
-  ('myth', 'local', 'ftp.password', '******', 'ftp服务器密码'),
-  ('myth', 'local', 'ftp.path', 'path/', '上传路径'),
-  ('myth', 'local', 'ftp.port', '21', 'ftp服务器端口'),
-  ('myth', 'local', 'ftp.url', 'http://cdn.kangyonggan.com/', '文件服务器地址'),
-  ('myth', 'local', 'ftp.username', 'kyg', 'ftp服务器用户名'),
-
   ('myth', 'local', 'jdbc.driver', 'com.mysql.jdbc.Driver', 'jdbc驱动'),
   ('myth', 'local', 'jdbc.password', '********', 'jdbc密码'),
   ('myth', 'local', 'jdbc.url', 'jdbc:mysql://127.0.0.1:3306/myth?useUnicode=true&characterEncoding=UTF-8', 'jdbc地址'),

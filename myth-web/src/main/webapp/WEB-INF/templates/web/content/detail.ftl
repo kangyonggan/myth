@@ -31,7 +31,7 @@
 
         <@apps>
             <#list attachments as attachment>
-                <a href="${ftpUrl}/${attachment.path}" target="_blank">${attachment.name}</a>
+                <a href="${ctx}/${attachment.path}" target="_blank">${attachment.name}</a>
                 <div class="space-10"></div>
             </#list>
         </@apps>

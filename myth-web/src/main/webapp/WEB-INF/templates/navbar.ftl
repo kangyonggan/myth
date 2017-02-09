@@ -29,7 +29,7 @@
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <#if user.smallAvatar!=''>
                                 <@apps>
-                                    <img class="nav-user-photo" src="${ftpUrl}/${user.smallAvatar}"
+                                    <img class="nav-user-photo" src="${ctx}/${user.smallAvatar}"
                                          alt="${user.fullname}">
                                 </@apps>
                             <#else>

@@ -6,6 +6,12 @@
 
     <bean id="smsService" class="com.kangyonggan.app.myth.biz.service.impl.SmsServiceImpl">
         <property name="regionId" value="${sms.regionId}"></property>
+        <property name="accessKeyId" value="${sms.accessKeyId}"></property>
+        <property name="secret" value="${sms.secret}"></property>
+        <property name="domain" value="${sms.domain}"></property>
+        <property name="signName" value="${sms.signName}"></property>
+        <property name="templateCode" value="${sms.templateCode}"></property>
+        <property name="debug" value="${sms.debug}"></property>
     </bean>
 
 </beans>

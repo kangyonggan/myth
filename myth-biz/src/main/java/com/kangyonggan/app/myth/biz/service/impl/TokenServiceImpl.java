@@ -47,7 +47,7 @@ public class TokenServiceImpl extends BaseService<Token> implements TokenService
         super.updateByPrimaryKeySelective(token);
     }
 
-    private String genTokenCode() {
+    public String genTokenCode() {
         byte[] hashKey = Digests.sha1(Digests.generateSalt(AppConstants.SALT_SIZE));
         return Encodes.encodeHex(hashKey);
     }

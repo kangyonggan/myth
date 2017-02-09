@@ -31,4 +31,11 @@ public interface TokenService {
      * @param token
      */
     void updateToken(Token token);
+
+    /**
+     * 生成token
+     *
+     * @return
+     */
+    String genTokenCode();
 }

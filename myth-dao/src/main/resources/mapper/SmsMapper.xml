@@ -17,4 +17,16 @@
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+    <select id="findSmsByCodeAndToken" resultMap="BaseResultMap">
+        SELECT * FROM sms
+        <where>
+            code = #{code}
+            AND token = #{token}
+            AND expire_time &gt; now()
+            AND is_deleted = 0
+        </where>
+        ORDER BY id DESC
+        limit 1
+    </select>
 </mapper>

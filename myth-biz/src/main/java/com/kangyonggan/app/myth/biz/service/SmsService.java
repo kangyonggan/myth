@@ -28,4 +28,20 @@ public interface SmsService {
      * @return
      */
     List<Sms> searchSmses(int pageNum, String mobile);
+
+    /**
+     * 查找短信
+     *
+     * @param code
+     * @param token
+     * @return
+     */
+    Sms findSmsByCodeAndToken(String code, String token);
+
+    /**
+     * 更新短信
+     *
+     * @param sms
+     */
+    void updateSms(Sms sms);
 }

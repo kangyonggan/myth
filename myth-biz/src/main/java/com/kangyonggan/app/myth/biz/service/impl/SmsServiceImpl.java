@@ -9,6 +9,7 @@ import com.aliyuncs.sms.model.v20160927.SingleSendSmsResponse;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.myth.biz.service.SmsService;
 import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
+import com.kangyonggan.app.myth.mapper.SmsMapper;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
 import com.kangyonggan.app.myth.model.vo.Sms;
@@ -16,6 +17,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
@@ -47,16 +49,15 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
     @Setter
     private String templateCode;
 
+    @Setter
+    private String debug;
+
     private IAcsClient client;
 
-    public SmsServiceImpl() {
-        regionId = PropertiesUtil.getProperties("sms.regionId");
-        accessKeyId = PropertiesUtil.getProperties("sms.accessKeyId");
-        secret = PropertiesUtil.getProperties("sms.secret");
-        domain = PropertiesUtil.getProperties("sms.domain");
-        signName = PropertiesUtil.getProperties("sms.signName");
-        templateCode = PropertiesUtil.getProperties("sms.templateCode");
+    @Autowired
+    private SmsMapper smsMapper;
 
+    public SmsServiceImpl() {
         try {
             IClientProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, secret);
             DefaultProfile.addEndpoint(regionId, regionId, "Sms", domain);
@@ -134,7 +135,15 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
             request.setParamString("{\"token\":\"" + token + "\"}");
             request.setRecNum(mobile);
 
-            SingleSendSmsResponse response = client.getAcsResponse(request);
+            SingleSendSmsResponse response;
+            if (!"true".equals(debug)) {
+                response = client.getAcsResponse(request);
+            } else {
+                log.info("调试阶段不真正的发短信");
+                response = new SingleSendSmsResponse();
+                response.setRequestId("BFDBE6CE-C2C5-46C0-8EC6-8A6628AAF53F");
+                response.setModel("105862070614^1107954709798");
+            }
             log.info("请求ID:{}", response.getRequestId());
             log.info("响应结果:{}", response.getModel());
             log.info("短信发送成功, 接收号码:{}, 验证码为:{}", mobile, token);
@@ -169,6 +178,18 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
 
         PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
         return super.selectByExample(example);
+    }
+
+    @Override
+    @LogTime
+    public Sms findSmsByCodeAndToken(String code, String token) {
+        return smsMapper.findSmsByCodeAndToken(code, token);
+    }
+
+    @Override
+    @LogTime
+    public void updateSms(Sms sms) {
+        super.updateByPrimaryKeySelective(sms);
     }
 
     /**

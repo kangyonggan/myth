@@ -33,5 +33,12 @@ VALUES
   ('myth', 'local', 'redis.prefix', 'myth', 'redis的key的前缀'),
   ('myth', 'local', 'redis.testOnBorrow', 'true', 'redis测试支持'),
 
+  ('myth', 'local', 'sms.regionId', 'cn-hangzhou', '短信机房信息'),
+  ('myth', 'local', 'sms.accessKeyId', '******', '短信密钥ID'),
+  ('myth', 'local', 'sms.secret', '******', '短信密钥'),
+  ('myth', 'local', 'sms.domain', 'sms.aliyuncs.com', '短信主机'),
+  ('myth', 'local', 'sms.signName', '东方娇子', '短信签名'),
+  ('myth', 'local', 'sms.templateCode', '******', '短信模板'),
+
   ('myth', 'local', 'slow.interface.time', '5', '慢接口时间(秒)'),
   ('myth', 'local', 'slow.method.time', '5', '慢方法时间(秒)');

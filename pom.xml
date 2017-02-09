@@ -78,6 +78,8 @@
         <commons-net.version>3.5</commons-net.version>
         <lombok.version>1.16.8</lombok.version>
         <pegdown.version>1.6.0</pegdown.version>
+        <aliyun.core>2.4.2</aliyun.core>
+        <aliyun.sms>3.0.0-rc1</aliyun.sms>
     </properties>
 
     <build>
@@ -412,6 +414,16 @@
                 <artifactId>pegdown</artifactId>
                 <version>${pegdown.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun.core}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-sms</artifactId>
+                <version>${aliyun.sms}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -422,4 +434,18 @@
         <module>myth-dao</module>
         <module>myth-model</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Sonatype Nexus Staging</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

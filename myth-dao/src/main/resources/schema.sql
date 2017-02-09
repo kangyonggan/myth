@@ -368,6 +368,43 @@ CREATE UNIQUE INDEX id_UNIQUE
 CREATE UNIQUE INDEX sdt_UNIQUE
   ON dictionary_medi (source_id, dictionary_code, type);
 
+-- ----------------------------
+--  Table structure for sms
+-- ----------------------------
+DROP TABLE
+IF EXISTS sms;
+
+CREATE TABLE sms
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  code         VARCHAR(128)                          NOT NULL
+  COMMENT '短信代码',
+  mobile       VARCHAR(20)                           NOT NULL
+  COMMENT '接收号码',
+  token        VARCHAR(64)                           NOT NULL
+  COMMENT '验证码',
+  result       VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '返回结果',
+  err_co       VARCHAR(16)                           NOT NULL
+  COMMENT '错误码',
+  err_msg      VARCHAR(64)                           NOT NULL
+  COMMENT '错误描述',
+  expire_time  DATETIME                              NOT NULL
+  COMMENT '失效时间',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '短信表';
+CREATE UNIQUE INDEX id_UNIQUE
+  ON sms (id);
+CREATE INDEX create_ix
+  ON sms (created_time);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -388,7 +425,8 @@ INSERT INTO user_profile
 (username, phone, id_card, qq, weixin, address, web_site)
 VALUES
   ('admin', '', '', '', '', '', ''),
-  ('kangyonggan', '021-63898580', '340321199112273095', '316071722', 'Brave_Kang', '上海市松江区九亭镇云润家园', 'http://kangyonggan.com');
+  ('kangyonggan', '021-63898580', '340321199112273095', '316071722', 'Brave_Kang', '上海市松江区九亭镇云润家园',
+   'http://kangyonggan.com');
 
 -- ----------------------------
 --  data for role

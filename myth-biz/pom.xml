@@ -134,6 +134,14 @@
             <groupId>org.pegdown</groupId>
             <artifactId>pegdown</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-sms</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

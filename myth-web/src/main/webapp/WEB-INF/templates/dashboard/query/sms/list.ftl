@@ -27,7 +27,7 @@
         <th>发送时间</th>
         <th>失效时间</th>
         <th>响应结果</th>
-        <th width="40%">服务端数据</th>
+        <th width="30%">服务端数据</th>
     </tr>
     </thead>
     <tbody>

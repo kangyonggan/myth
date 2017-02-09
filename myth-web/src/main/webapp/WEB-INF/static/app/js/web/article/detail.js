@@ -1,5 +1,9 @@
 $(function () {
-    updateState("user/article");
+    if ('true' == isQuery) {
+        updateState("query/article");
+    } else {
+        updateState("user/article");
+    }
 
     document.title = title;
 

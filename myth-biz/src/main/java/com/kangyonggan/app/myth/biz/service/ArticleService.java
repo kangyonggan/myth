@@ -15,11 +15,12 @@ public interface ArticleService {
      * 搜索文章
      *
      * @param pageNum
+     * @param username
      * @param tag
      * @param title
      * @return
      */
-    List<Article> searchArticles(int pageNum, String tag, String title);
+    List<Article> searchArticles(int pageNum, String username, String tag, String title);
 
     /**
      * 保存文章及附件

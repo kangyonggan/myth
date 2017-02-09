@@ -52,5 +52,6 @@
 
 <script>
     var title = '${article.title}';
+    var isQuery = '${isQuery!''}';
 </script>
 <script src="${ctx}/static/app/js/web/article/detail.js"></script>

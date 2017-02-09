@@ -60,7 +60,8 @@ public class DashboardUserArticleController extends BaseController {
                        @RequestParam(value = "tag", required = false, defaultValue = "") String tag,
                        @RequestParam(value = "title", required = false, defaultValue = "") String title,
                        Model model) {
-        List<Article> articles = articleService.searchArticles(pageNum, tag, title);
+        ShiroUser user = userService.getShiroUser();
+        List<Article> articles = articleService.searchArticles(pageNum, user.getUsername(), tag, title);
         PageInfo<Article> page = new PageInfo(articles);
         List<Dictionary> tags = dictionaryService.findDictionariesByType(DictionaryType.TAG.getType());
 

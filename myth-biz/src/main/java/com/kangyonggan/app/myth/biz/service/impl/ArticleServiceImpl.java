@@ -11,7 +11,6 @@ import com.kangyonggan.app.myth.model.vo.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,11 +39,9 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
 
     @Override
     @LogTime
-    public List<Article> searchArticles(int pageNum, String tag, String title) {
-        ShiroUser user = userService.getShiroUser();
-
+    public List<Article> searchArticles(int pageNum, String username, String tag, String title) {
         PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
-        return articleMapper.searchArticles(user.getUsername(), tag, title);
+        return articleMapper.searchArticles(username, tag, title);
     }
 
     @Override

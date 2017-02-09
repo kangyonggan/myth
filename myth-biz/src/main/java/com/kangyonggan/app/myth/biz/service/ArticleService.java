@@ -66,4 +66,13 @@ public interface ArticleService {
      * @param id
      */
     void deleteArticle(Long id);
+
+    /**
+     * 根据标签查找文章
+     *
+     * @param pageNum
+     * @param tag
+     * @return
+     */
+    List<Article> findArticlesByTag(int pageNum, String tag);
 }

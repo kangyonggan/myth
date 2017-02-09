@@ -40,10 +40,12 @@
 
         <div class="space-10"></div>
 
-        <#list attachments as attachment>
-            <a href="${ctx}/${attachment.path}" target="_blank">${attachment.name}</a>
-            <div class="space-10"></div>
-        </#list>
+        <@apps>
+            <#list attachments as attachment>
+                <a href="${cdnServer}/${attachment.path}" target="_blank">${attachment.name}</a>
+                <div class="space-10"></div>
+            </#list>
+        </@apps>
     </#if>
     </div>
 </div>

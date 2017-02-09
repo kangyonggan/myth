@@ -34,4 +34,18 @@
         </where>
         ORDER BY a.id DESC
     </select>
+
+    <select id="findArticlesByTag" resultMap="BaseResultMap">
+        SELECT DISTINCT a.id, a.title, a.tags, a.create_username, a.create_fullname, a.is_deleted, a.created_time
+        FROM article a, dictionary_medi dm
+        <where>
+            a.id = dm.source_id
+            AND dm.type = 'tag'
+            AND a.is_deleted = 0
+            <if test="tag != null and tag != ''">
+              AND dm.dictionary_code = #{tag}
+            </if>
+        </where>
+        ORDER BY a.id DESC
+    </select>
 </mapper>

@@ -11,6 +11,7 @@ import com.kangyonggan.app.myth.model.vo.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
 import java.util.List;
@@ -112,6 +113,7 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
     public Article findArticleById(Long id) {
         Article article = new Article();
         article.setIsDeleted(AppConstants.IS_DELETED_NO);
+        article.setId(id);
 
         return super.selectOne(article);
     }
@@ -126,5 +128,13 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         article.setCreateUsername(user.getUsername());
 
         super.delete(article);
+    }
+
+    @Override
+    @LogTime
+    public List<Article> findArticlesByTag(int pageNum, String tag) {
+        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
+
+        return articleMapper.findArticlesByTag(tag);
     }
 }

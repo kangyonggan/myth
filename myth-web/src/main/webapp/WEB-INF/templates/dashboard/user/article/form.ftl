@@ -46,9 +46,11 @@
         <label class="col-xs-10 col-xs-offset-1 pull-left">原附件</label>
 
         <div class="col-xs-10 col-xs-offset-1 old-attachments-list">
-            <#list attachments as attachment>
+            <@apps>
+                <#list attachments as attachment>
                     <#include "attachment.ftl"/>
                 </#list>
+            </@apps>
         </div>
     </div>
 </#if>

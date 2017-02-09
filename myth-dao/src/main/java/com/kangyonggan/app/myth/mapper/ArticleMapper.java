@@ -18,4 +18,12 @@ public interface ArticleMapper extends MyMapper<Article> {
      * @return
      */
     List<Article> searchArticles(@Param("username") String username, @Param("tag") String tag, @Param("title") String title);
+
+    /**
+     * 根据标签查找文章
+     *
+     * @param tag
+     * @return
+     */
+    List<Article> findArticlesByTag(@Param("tag") String tag);
 }

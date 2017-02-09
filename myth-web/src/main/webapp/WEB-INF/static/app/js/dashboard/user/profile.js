@@ -123,7 +123,7 @@ $(function () {
                         var user = response.user;
                         // 更新navbar和当前页
                         if (user.smallAvatar != '') {
-                            $(".nav-user-photo").attr("src", ctx + "/" + user.smallAvatar);
+                            $(".nav-user-photo").attr("src", cdnServer + "/" + user.smallAvatar);
                         }
                         $("#navFullname").html(user.fullname);
                     } else {

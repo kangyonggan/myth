@@ -10,6 +10,7 @@ VALUES
   ('myth', 'local', 'cache.open', 'Y', '是否开启缓存:{Y:开启,N:不开启}'),
 
   ('myth', 'local', 'file.root.path', '/Users/kyg/data/code/20170207/myth/myth-web/src/main/webapp/WEB-INF/', '文件上传根路径'),
+  ('myth', 'local', 'cdn.server', 'http://cdn.kangyonggan.com', 'cdn加速服务器'),
 
   ('myth', 'local', 'jdbc.driver', 'com.mysql.jdbc.Driver', 'jdbc驱动'),
   ('myth', 'local', 'jdbc.password', '********', 'jdbc密码'),

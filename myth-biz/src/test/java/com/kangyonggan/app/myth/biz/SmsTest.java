@@ -20,7 +20,7 @@ public class SmsTest extends AbstractServiceTest {
 
     @Test
     public void testSendSms() {
-        Map<String, Object> resultMap = smsService.sendSms("13062666053", DateUtils.getCurrentFullDateTime(), "123456");
+        Map<String, Object> resultMap = smsService.sendSms("18221372104", DateUtils.getCurrentFullDateTime(), "520134");
         log.info(resultMap);
     }
 

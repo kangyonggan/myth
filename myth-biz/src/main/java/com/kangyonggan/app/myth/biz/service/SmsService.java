@@ -1,5 +1,8 @@
 package com.kangyonggan.app.myth.biz.service;
 
+import com.kangyonggan.app.myth.model.vo.Sms;
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,4 +20,12 @@ public interface SmsService {
      */
     Map<String, Object> sendSms(String mobile, String code, String token);
 
+    /**
+     * 短信查询
+     *
+     * @param pageNum
+     * @param mobile
+     * @return
+     */
+    List<Sms> searchSmses(int pageNum, String mobile);
 }

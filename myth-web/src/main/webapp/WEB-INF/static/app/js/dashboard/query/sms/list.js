@@ -1,0 +1,3 @@
+$(function () {
+    updateState("query/sms");
+});

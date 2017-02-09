@@ -6,16 +6,20 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.aliyuncs.sms.model.v20160927.SingleSendSmsRequest;
 import com.aliyuncs.sms.model.v20160927.SingleSendSmsResponse;
+import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.myth.biz.service.SmsService;
 import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
+import com.kangyonggan.app.myth.model.constants.AppConstants;
 import com.kangyonggan.app.myth.model.vo.Sms;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -123,7 +127,6 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
         }
 
         // 发送
-        SingleSendSmsResponse response = null;
         try {
             SingleSendSmsRequest request = new SingleSendSmsRequest();
             request.setSignName(signName);
@@ -131,7 +134,7 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
             request.setParamString("{\"token\":\"" + token + "\"}");
             request.setRecNum(mobile);
 
-            response = client.getAcsResponse(request);
+            SingleSendSmsResponse response = client.getAcsResponse(request);
             log.info("请求ID:{}", response.getRequestId());
             log.info("响应结果:{}", response.getModel());
             log.info("短信发送成功, 接收号码:{}, 验证码为:{}", mobile, token);
@@ -141,7 +144,7 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
 
             resultMap.put("errCo", errCo);
             resultMap.put("errMsg", errMsg);
-            saveSms(code, mobile, token, errCo, errMsg, null);
+            saveSms(code, mobile, token, errCo, errMsg, response);
             return resultMap;
         } catch (Exception e) {
             log.error("短信发送失败, 接收号码:" + mobile + ", 验证码:" + token, e);
@@ -153,6 +156,19 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
             saveSms(code, mobile, token, errCo, errMsg, null);
             return resultMap;
         }
+    }
+
+    @Override
+    @LogTime
+    public List<Sms> searchSmses(int pageNum, String mobile) {
+        Example example = new Example(Sms.class);
+        if (StringUtils.isNotEmpty(mobile)) {
+            example.createCriteria().andEqualTo("mobile", mobile);
+        }
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
+        return super.selectByExample(example);
     }
 
     /**

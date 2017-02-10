@@ -76,4 +76,12 @@ public interface ArticleService {
      * @return
      */
     List<Article> findArticlesByTag(int pageNum, String tag);
+
+    /**
+     * 查找所有文章
+     *
+     * @return
+     */
+    List<Article> findAllArticles();
+
 }

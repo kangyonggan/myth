@@ -11,6 +11,7 @@ import com.kangyonggan.app.myth.model.vo.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Arrays;
 import java.util.List;
@@ -133,5 +134,15 @@ public class ArticleServiceImpl extends BaseService<Article> implements ArticleS
         PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
 
         return articleMapper.findArticlesByTag(tag);
+    }
+
+    @Override
+    @LogTime
+    public List<Article> findAllArticles() {
+        Example example = new Example(Article.class);
+        example.createCriteria().andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+
+        example.setOrderByClause("id desc");
+        return super.selectByExample(example);
     }
 }

@@ -1,5 +1,5 @@
 INSERT INTO project (code, name, push_url)
-VALUES ('myth', '东方娇子', '');
+VALUES ('myth', '东方娇子', 'http://kangyonggan.com/configcenter');
 
 INSERT INTO configuration (proj_code, environment, name, value, description)
 VALUES

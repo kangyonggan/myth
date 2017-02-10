@@ -10,6 +10,9 @@
             <em class="hidden-xs">${appBaNo}</em>
 				Build By ${appAuthor}
 			</span>
+            <a href="${ctx}/upload/blog.xml" target="_blank">
+                <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+            </a>
         </div>
     </div>
 </div>

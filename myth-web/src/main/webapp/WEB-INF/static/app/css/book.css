@@ -1,0 +1,376 @@
+#book-container {
+    width: 980px;
+    margin: 0 auto;
+}
+
+/*header*/
+#book-header {
+    height: 72px;
+}
+
+#book-home {
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    font-size: 22px;
+    height: 72px;
+    line-height: 72px;
+}
+
+#search-key {
+    height: 33px;
+    width: 330px;
+    margin-top: 19px;
+}
+
+/*navbar*/
+#book-navbar {
+    height: 45px;
+    background: #404040;
+}
+
+#book-navbar > ul {
+    list-style: none;
+    margin: 0;
+}
+
+#book-navbar > ul > li {
+    float: left;
+}
+
+#book-navbar > ul > li > a {
+    display: block;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0 14px;
+}
+
+/*recommend*/
+#book-recommend {
+    height: 356px;
+}
+
+#book-recommend-l {
+    float: left;
+    width: 695px;
+    height: 356px;
+    border: 3px solid #404040;
+}
+
+#book-recommend-r {
+    float: right;
+    width: 275px;
+    height: 356px;
+    border: 3px solid #404040;
+}
+
+#book-recommend-l .book-item {
+    width: 341px;
+    height: 171px;
+    float: left;
+    padding: 10px 0 0 10px;
+}
+
+#book-recommend-l .book-item .image {
+    float: left;
+    width: 120px;
+    border: 1px solid #DDD;
+    padding: 1px;
+}
+
+#book-recommend-l .book-item dl {
+    float: right;
+    width: 190px;
+    padding: 0 5px 0 0;
+}
+
+#book-recommend-l .book-item dl dt {
+    border-bottom: 1px dotted #444;
+    font-size: 14px;
+    font-weight: 700;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+
+#book-recommend-l .book-item dl dt > a {
+    color: #6F78A7;
+    text-decoration: none;
+}
+
+#book-recommend-l .book-item dl dt > span {
+    color: #B3B3B3;
+    float: right;
+    font-weight: 400;
+}
+
+#book-recommend-l .book-item dl dd {
+    height: 123px;
+    line-height: 20px;
+    overflow: hidden;
+    text-indent: 2em;
+    padding: 7px 0 0;
+}
+
+#book-recommend-r > h2 {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #d5d5d5;
+    font-size: 14px;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 0 0 10px;
+}
+
+#book-recommend-r > ul {
+    list-style: none;
+    margin-left: 0;
+    padding: 1px 10px;
+}
+
+#book-recommend-r > ul > li {
+    border-bottom: 1px solid #DDDDDD;
+    height: 34px;
+    line-height: 34px;
+    overflow: hidden;
+    padding: 5px 0 0;
+}
+
+#book-recommend-r > ul > li span {
+    float: left;
+    display: inline-block;
+}
+
+#book-recommend-r > ul > li .s1 {
+    width: 40px;
+}
+
+#book-recommend-r > ul > li .s2 {
+    color: #B3B3B3;
+}
+
+#book-recommend-r > ul > li .s5 {
+    float: right;
+    text-align: right;
+}
+
+/*category*/
+.book-category {
+    height: 300px;
+    background: #fafafa;
+    border: 3px solid #404040;
+}
+
+.book-category .content {
+    float: left;
+    border-right: dotted 1px #444;
+    padding: 0px 3px;
+    width: 315px;
+    height: 295px;
+    margin: auto;
+}
+
+.book-category .no-border {
+    border: 0;
+}
+
+.book-category .content h2 {
+    border-bottom: solid 1px #444;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 5px;
+    line-height: 25px;
+    height: 25px;
+    overflow: hidden;
+    margin: 0;
+}
+
+.book-category .content .top .image {
+    padding: 10px 0px 0px 5px;
+    float: left;
+    width: 71px;
+}
+
+.book-category .content .top dl {
+    padding: 10px 0px 0px 0px;
+    float: right;
+    width: 219px;
+    margin-bottom: 0;
+}
+
+.book-category .content .top dl dt {
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.book-category .content .top dl dd {
+    line-height: 20px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.book-category .content ul {
+    list-style: none;
+    margin-left: 0;
+    padding: 10px 0px 0px 0px;
+}
+
+.book-category .content ul li {
+    color: #B3B3B3;
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px;
+    overflow: hidden;
+    float: left;
+    width: 150px;
+    padding: 5px 0px 0px 0px;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+.book-category .content ul li a {
+    font-size: 13px;
+    color: #000;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+/*new*/
+#book-new {
+    height: 987px;
+}
+
+#book-new .l {
+    height: 987px;
+    width: 695px;
+    float: left;
+    border: 3px solid #404040;
+}
+
+#book-new .l h2 {
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px 0px 0px 10px;
+    background-color: #f5f5f5;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+#book-new .l ul {
+    list-style: none;
+    margin-left: 0;
+    padding: 10px;
+}
+
+#book-new .l ul li {
+    padding: 5px 0px 0px 0px;
+    border-bottom: solid 1px #DDDDDD;
+    overflow: hidden;
+    height: 31px;
+    line-height: 31px;
+}
+
+#book-new .l ul li span {
+    float: left;
+    display: inline-block;
+    height: 31px;
+    line-height: 31px;
+    color: #000;
+}
+
+#book-new .l ul li .s1 {
+    width: 75px;
+}
+
+#book-new .l ul li .s2 {
+    width: 165px;
+}
+
+#book-new .l ul li .s3 {
+    width: 300px;
+}
+
+#book-new .l ul li .s4 {
+    color: #B3B3B3;
+    width: 90px;
+    text-align: right;
+}
+
+#book-new .l ul li .s5 {
+    color: #B3B3B3;
+    float: right;
+    text-align: right;
+}
+
+#book-new .r {
+    height: 987px;
+    float: right;
+    width: 275px;
+    border: 3px solid #404040;
+}
+
+#book-new .r h2 {
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px 0px 0px 10px;
+    background-color: #f5f5f5;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+#book-new .r ul {
+    list-style: none;
+    margin-left: 0;
+    padding: 10px;
+}
+
+#book-new .r ul li {
+    padding: 5px 0px 0px 0px;
+    border-bottom: solid 1px #DDDDDD;
+    height: 31px;
+    line-height: 31px;
+    overflow: hidden;
+}
+
+#book-new .r ul li span {
+    float: left;
+    display: inline-block;
+}
+
+#book-new .r ul li .s1 {
+    width: 40px;
+}
+
+#book-new .r ul li .s2 {
+    color: #B3B3B3;
+}
+
+#book-new .r ul li .s5 {
+    float: right;
+    text-align: right;
+}
+
+/*friend*/
+#book-friend {
+    border: 1px solid #404040;
+    line-height: 22px;
+    padding: 9px 0 9px 9px;
+}
+#book-friend a {
+    color: #000000;
+    display: inline-block;
+    margin: 0 9px 0 0;
+    text-decoration: none;
+}

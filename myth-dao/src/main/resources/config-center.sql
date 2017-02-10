@@ -5,7 +5,7 @@ INSERT INTO configuration (proj_code, environment, name, value, description)
 VALUES
   ('myth', 'local', 'app.name', '东方娇子', '项目名称'),
   ('myth', 'local', 'app.author', '康永敢', '项目负责人'),
-  ('myth', 'local', 'app.record', '皖ICP备16017743号-1', '备案号'),
+  ('myth', 'local', 'app.ba.no', '皖ICP备16017743号-1', '备案号'),
 
   ('myth', 'local', 'cache.open', 'Y', '是否开启缓存:{Y:开启,N:不开启}'),
 

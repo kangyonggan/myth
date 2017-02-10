@@ -7,11 +7,14 @@
 				<span class="grey bolder">${appName}</span>
                 © 2017
                 <img src="${ctx}/static/app/images/ba.png">
-            <em class="hidden-xs">${appBaNo}</em>
+            <em >${appBaNo}</em>
 				Build By ${appAuthor}
 			</span>
             <a href="${ctx}/upload/blog.xml" target="_blank">
                 <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+            </a>
+            <a href="#book">
+                <i class="ace-icon fa fa-book green bigger-150"></i>
             </a>
         </div>
     </div>

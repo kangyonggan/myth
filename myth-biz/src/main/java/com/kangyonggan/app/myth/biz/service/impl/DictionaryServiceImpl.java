@@ -86,7 +86,7 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
         Example example = new Example(Dictionary.class);
         example.createCriteria().andEqualTo("type", type).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
 
-        example.setOrderByClause("sort desc");
+        example.setOrderByClause("sort asc");
         return super.selectByExample(example);
     }
 

@@ -22,7 +22,7 @@
 
                     <div class="space-14"></div>
 
-                    <form id="reset-password-form" action="${ctx}/reset/password" method="post">
+                    <form id="reset-password-form" action="${ctx}/reset/email/password" method="post">
                         <input type="hidden" name="code" value="${token.code}"/>
                         <input type="hidden" name="userId" value="${user.id}"/>
                         <fieldset>
@@ -63,7 +63,7 @@
 </@override>
 
 <@override name="script">
-<script src="${ctx}/static/app/js/web/auth/reset-password.js"></script>
+<script src="${ctx}/static/app/js/web/auth/reset-email-password.js"></script>
 </@override>
 
 <@extends name="../auth-layout.ftl"/>

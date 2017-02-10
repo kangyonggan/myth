@@ -43,7 +43,7 @@ public class MailServiceImpl implements MailService {
         String code = tokenService.saveToken("reset", user.getId());
         log.info("发邮件的消息码code：{}", code);
 
-        callbackUrl += "#validate/reset/" + code;
+        callbackUrl += "#validate/email/code/" + code;
         log.info("最终邮件回调地址:{}", callbackUrl);
 
         Map<String, Object> map = new HashMap();

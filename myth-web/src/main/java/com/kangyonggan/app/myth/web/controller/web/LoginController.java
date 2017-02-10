@@ -1,14 +1,17 @@
 package com.kangyonggan.app.myth.web.controller.web;
 
 import com.kangyonggan.app.myth.biz.service.MailService;
+import com.kangyonggan.app.myth.biz.service.SmsService;
 import com.kangyonggan.app.myth.biz.service.TokenService;
 import com.kangyonggan.app.myth.biz.service.UserService;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
+import com.kangyonggan.app.myth.model.vo.Sms;
 import com.kangyonggan.app.myth.model.vo.Token;
 import com.kangyonggan.app.myth.model.vo.User;
 import com.kangyonggan.app.myth.web.controller.BaseController;
 import com.kangyonggan.app.myth.web.util.IPUtil;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -26,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author kangyonggan
@@ -44,6 +48,9 @@ public class LoginController extends BaseController {
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private SmsService smsService;
 
     /**
      * 登录界面
@@ -136,27 +143,37 @@ public class LoginController extends BaseController {
     }
 
     /**
-     * 找回密码界面
+     * 通过邮箱找回密码界面
      *
      * @return
      */
-    @RequestMapping(value = "reset", method = RequestMethod.GET)
-    public String reset() {
-        return getPathRoot() + "/reset";
+    @RequestMapping(value = "reset/email", method = RequestMethod.GET)
+    public String resetEmail() {
+        return getPathRoot() + "/reset-email";
     }
 
     /**
-     * 找回密码
+     * 通过手机找回密码界面
+     *
+     * @return
+     */
+    @RequestMapping(value = "reset/mobile", method = RequestMethod.GET)
+    public String resetMobile() {
+        return getPathRoot() + "/reset-mobile";
+    }
+
+    /**
+     * 邮箱找回密码
      *
      * @param email
      * @param captcha
      * @param request
      * @return
      */
-    @RequestMapping(value = "reset", method = RequestMethod.POST)
+    @RequestMapping(value = "reset/email", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> reset(@RequestParam("email") String email, @RequestParam("captcha") String captcha,
-                                     HttpServletRequest request) {
+    public Map<String, Object> resetEmail(@RequestParam("email") String email, @RequestParam("captcha") String captcha,
+                                          HttpServletRequest request) {
         Map<String, Object> resultMap = getResultMap();
 
         log.info("找回密码的邮箱：{}", email);
@@ -184,6 +201,31 @@ public class LoginController extends BaseController {
 
         mailService.sendResetMail(user, IPUtil.getServerHost(request));
         resultMap.put("errMsg", "/#reset-result");
+
+        return resultMap;
+    }
+
+    /**
+     * 手机找回密码
+     *
+     * @param mobile
+     * @param code
+     * @param token
+     * @return
+     */
+    @RequestMapping(value = "reset/mobile", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> resetMobile(@RequestParam("mobile") String mobile,
+                                           @RequestParam("code") String code,
+                                           @RequestParam("token") String token) {
+        Map<String, Object> resultMap = getResultMap();
+
+        Sms sms = smsService.findSmsByCodeAndToken(code, token);
+        if (sms == null) {
+            setResultMapFailure(resultMap, "短信校验码不正确或已失效");
+        } else {
+            resultMap.put("errMsg", "/#validate/mobile/code/" + code + "?token=" + token + "&mobile=" + mobile);
+        }
 
         return resultMap;
     }
@@ -220,10 +262,10 @@ public class LoginController extends BaseController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "reset/password", method = RequestMethod.POST)
+    @RequestMapping(value = "reset/email/password", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> resetPassword(@RequestParam("code") String code, @RequestParam("userId") Long userId,
-                                             @RequestParam("password") String password) {
+    public Map<String, Object> resetEmailPassword(@RequestParam("code") String code, @RequestParam("userId") Long userId,
+                                                  @RequestParam("password") String password) {
         Map<String, Object> resultMap = getResultMap();
 
         Token token = tokenService.findTokenByCode(code);
@@ -239,7 +281,7 @@ public class LoginController extends BaseController {
             if (user == null) {
                 setResultMapFailure(resultMap, "用户不存在");
             } else {
-                token.setIsDeleted((byte) 1);
+                token.setIsDeleted(AppConstants.IS_DELETED_YES);
                 tokenService.updateToken(token);
 
                 user.setPassword(password);
@@ -251,4 +293,108 @@ public class LoginController extends BaseController {
         return resultMap;
     }
 
+    /**
+     * 重置密码
+     *
+     * @param code
+     * @param token
+     * @param userId
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = "reset/mobile/password", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> resetMobilePassword(@RequestParam("code") String code,
+                                                   @RequestParam("token") String token,
+                                                   @RequestParam("userId") Long userId,
+                                                   @RequestParam("password") String password) {
+        Map<String, Object> resultMap = getResultMap();
+
+        Sms sms = smsService.findSmsByCodeAndToken(code, token);
+        User user = userService.findUserById(userId);
+
+        if (sms == null) {
+            setResultMapFailure(resultMap, "校验码已失效，请重新找回密码！");
+        } else {
+            if (user == null) {
+                setResultMapFailure(resultMap, "用户不存在");
+            } else {
+                sms.setIsDeleted(AppConstants.IS_DELETED_YES);
+                smsService.updateSms(sms);
+
+                user.setPassword(password);
+                userService.updateUserPassword(user);
+            }
+        }
+
+        resultMap.put("errMsg", "/#reset-password-result");
+        return resultMap;
+    }
+
+    /**
+     * 发送校验码
+     *
+     * @param mobile
+     * @param captcha
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "send", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> send(@RequestParam("mobile") String mobile,
+                                    @RequestParam("captcha") String captcha,
+                                    HttpServletRequest request) {
+        Map<String, Object> resultMap = getResultMap();
+
+        HttpSession session = request.getSession();
+        String realCaptcha = (String) session.getAttribute(AppConstants.KEY_CAPTCHA);
+        log.info("session中的验证码为：{}", realCaptcha);
+        log.info("用户上送的验证码为：{}", captcha);
+
+        if (!captcha.equalsIgnoreCase(realCaptcha)) {
+            setResultMapFailure(resultMap, "验证码错误或已失效");
+            return resultMap;
+        }
+
+        if (StringUtils.isEmpty(mobile)) {
+            setResultMapFailure(resultMap, "手机号不能为空！");
+            return resultMap;
+        }
+
+        User user = userService.findUserByMobile(mobile);
+        if (user == null) {
+            setResultMapFailure(resultMap, "手机号不存在！");
+            return resultMap;
+        }
+
+        String regex = "^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$";
+        if (!mobile.matches(regex)) {
+            setResultMapFailure(resultMap, "手机号码不正确！");
+            return resultMap;
+        }
+
+        // 清除验证码
+        session.removeAttribute(AppConstants.KEY_CAPTCHA);
+
+        // 发短信
+        String code = tokenService.genTokenCode();
+        smsService.sendSms(mobile, code, genToken());
+
+        resultMap.put("code", code);
+        return resultMap;
+    }
+
+    private String genToken() {
+        Random random = new Random();
+        StringBuilder token = new StringBuilder();
+
+        for (int i = 0; i < 6; i++) {
+            // 随机产生校验码码 0 ~ 9
+            String code = String.valueOf(random.nextInt(10));
+            // 拼接验证码
+            token.append(code);
+        }
+
+        return token.toString();
+    }
 }

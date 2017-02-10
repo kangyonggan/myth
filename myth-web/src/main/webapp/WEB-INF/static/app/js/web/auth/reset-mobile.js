@@ -1,7 +1,5 @@
 $(function () {
-    updateState("user/mobile");
-
-    var $form = $('#mobile-form');
+    var $form = $('#reset-form');
     var $btn = $("#submit");
     var $send = $("#send");
 
@@ -19,25 +17,24 @@ $(function () {
                 required: true
             }
         },
-        submitHandler: function (form, event) {
-            event.preventDefault();
+        submitHandler: function () {
             $btn.button('loading');
-
-            $(form).ajaxSubmit({
+            $form.ajaxSubmit({
                 dataType: 'json',
                 success: function (response) {
-                    if (response.errCode == 'success') {
-                        window.location.href = window.location.origin + window.location.pathname + "#user/mobile";
+                    if (response.errCode == "success") {
+                        window.location.href = ctx + response.errMsg;
                     } else {
                         Message.error(response.errMsg);
+                        $btn.button('reset');
                     }
-                    $btn.button('reset');
                 },
                 error: function () {
                     Message.error("服务器内部错误，请稍后再试。");
                     $btn.button('reset');
                 }
             });
+            return false;
         },
         errorPlacement: function (error, element) {
             error.appendTo(element.parent());
@@ -51,7 +48,7 @@ $(function () {
         var captcha = $("#captcha").val();
 
         $send.attr("disabled", true);
-        $.get(ctx + "/dashboard/user/mobile/send?mobile=" + mobile + "&captcha=" + captcha, function (data) {
+        $.get(ctx + "/send?mobile=" + mobile + "&captcha=" + captcha, function (data) {
             data = eval('(' + data + ')');
 
             if (data.errCode != 'success') {
@@ -82,5 +79,5 @@ $(function () {
         $form.submit();
         return false;
     });
-
 });
+

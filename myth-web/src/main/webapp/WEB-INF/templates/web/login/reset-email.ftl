@@ -12,14 +12,19 @@
 
                 <div class="space-14"></div>
 
-                <form id="reset-form" method="post" action="${ctx}/reset">
+                <form id="reset-form" method="post" action="${ctx}/reset/email">
                     <div class="form-group clearfix">
-                        <label class="col-xs-12 control-label no-padding-right">输入邮箱找回密码</label>
+                        <label class="col-xs-12 control-label no-padding-right">
+                            邮箱<span class="red">*</span>
+                            <span class="pull-right">
+                                切换到
+                                <a href="#reset/mobile">手机</a>
+                            </span>
+                        </label>
                         <div class="col-xs-12">
                             <span class="block input-icon input-icon-right">
                                 <input type="text" id="email" name="email" class="form-control" placeholder="请输入邮箱"/>
                                 <i class="ace-icon fa fa-envelope"></i>
-                                <label class="error hide" for="email"></label>
                             </span>
                         </div>
                     </div>
@@ -27,13 +32,12 @@
                     <div class="space-14"></div>
 
                     <div class="form-group clearfix">
-                        <label class="col-xs-12 control-label no-padding-right">验证码</label>
+                        <label class="col-xs-12 control-label no-padding-right">验证码<span class="red">*</span></label>
                         <div class="col-xs-7">
                         <span class="block input-icon input-icon-right">
                             <input value="" type="text" id="captcha" name="captcha" class="form-control"
                                    placeholder="请输入4位数字的验证码" autocomplete="off">
                             <i class="ace-icon fa fa-times-circle hide"></i>
-                            <label class="error hide" for="captcha"></label>
                         </span>
                         </div>
                         <div class="col-xs-5">
@@ -45,7 +49,8 @@
                     <div class="space-14"></div>
 
                     <div class="col-xs-4 col-xs-offset-8">
-                        <button id="submit" class="btn btn-sm width-100 btn-inverse" data-loading-text="正在提交...">发送</button>
+                        <button id="submit" class="btn btn-sm width-100 btn-inverse" data-loading-text="正在提交...">发送
+                        </button>
                     </div>
                 </form>
             </div>
@@ -62,7 +67,7 @@
 </@override>
 
 <@override name="script">
-<script src="${ctx}/static/app/js/web/auth/reset.js"></script>
+<script src="${ctx}/static/app/js/web/auth/reset-email.js"></script>
 </@override>
 
 <@extends name="../auth-layout.ftl"/>

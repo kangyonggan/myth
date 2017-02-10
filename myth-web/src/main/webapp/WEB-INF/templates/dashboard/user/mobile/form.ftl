@@ -25,7 +25,7 @@
         <label class="col-sm-3 control-label no-padding-right">校验码<span class="red">*</span></label>
         <div class="col-xs-12 col-sm-5">
             <input type="text" id="token" name="token" class="col-xs-6" placeholder="请输入手机短信中的校验码" autocomplete="off">
-            <button type="button" class="btn btn-inverse btn-sm" id="send" data-loading-text="正在提交..."><i
+            <button type="button" class="btn btn-inverse btn-sm" id="send"><i
                     class="ace-icon fa fa-mobile bigger-130"></i>获取校验码
             </button>
         </div>

@@ -2,6 +2,7 @@ package com.kangyonggan.app.myth.web.controller.web;
 
 import com.kangyonggan.app.myth.biz.service.*;
 import com.kangyonggan.app.myth.model.vo.Token;
+import com.kangyonggan.app.myth.model.vo.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -131,7 +132,7 @@ public class ValidateController {
     @RequestMapping(value = "dictionary", method = RequestMethod.POST)
     @ResponseBody
     public boolean validateDictionaryCode(@RequestParam("code") String code,
-                                    @RequestParam(value = "oldCode", required = false, defaultValue = "") String oldCode) {
+                                          @RequestParam(value = "oldCode", required = false, defaultValue = "") String oldCode) {
         if (code.equals(oldCode)) {
             return true;
         }
@@ -158,14 +159,14 @@ public class ValidateController {
     }
 
     /**
-     * 重置密码界面
+     * 邮箱重置密码界面
      *
      * @param code
      * @param model
      * @return
      */
-    @RequestMapping(value = "reset/{code}", method = RequestMethod.GET)
-    public String reset(@PathVariable("code") String code, Model model) {
+    @RequestMapping(value = "email/code/{code}", method = RequestMethod.GET)
+    public String emailResetPassword(@PathVariable("code") String code, Model model) {
         Token token = tokenService.findTokenByCode(code);
 
         if (token == null) {
@@ -179,6 +180,28 @@ public class ValidateController {
             model.addAttribute("token", token);
         }
 
-        return "web/login/reset-password";
+        return "web/login/reset-email-password";
+    }
+
+    /**
+     * 手机重置密码界面
+     *
+     * @param code
+     * @param token
+     * @param mobile
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "mobile/code/{code}", method = RequestMethod.GET)
+    public String mobileResetPassword(@PathVariable("code") String code,
+                                      @RequestParam("token") String token,
+                                      @RequestParam("mobile") String mobile,
+                                      Model model) {
+        User user = userService.findUserByMobile(mobile);
+
+        model.addAttribute("user", user);
+        model.addAttribute("token", token);
+        model.addAttribute("code", code);
+        return "web/login/reset-mobile-password";
     }
 }

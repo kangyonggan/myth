@@ -6,7 +6,7 @@
         <h3>${message}</h3>
         <div class="space-28"></div>
         <div class="center">
-            <a href="#reset" class="forgot-password-link">
+            <a href="#reset/email" class="forgot-password-link">
                 <i class="ace-icon fa fa-arrow-left"></i>
                 重新找回密码
             </a>

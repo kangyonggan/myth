@@ -109,8 +109,8 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label no-padding-right">手机号</label>
                     <div class="col-xs-12 col-sm-5">
-                        <@spring.formInput "user.mobile" 'class="form-control" placeholder="请输入11位的手机号"'/>
-                        <input type="hidden" id="old-mobile" value="${user.mobile!''}"/>
+                        <@spring.formInput "user.mobile" 'class="col-xs-11 readonly" placeholder="请输入11位的手机号" readonly'/>
+                        <a href="#user/mobile/edit" class="mobile-edit">设置</a>
                     </div>
                 </div>
 

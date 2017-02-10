@@ -116,3 +116,11 @@ input[readonly].readonly {
     margin-top: 5px;
     font-size: 12px;
 }
+
+.mobile-edit {
+    display: block;
+    float: right;
+    height: 34px;
+    line-height: 34px;
+    font-size: 16px;
+}

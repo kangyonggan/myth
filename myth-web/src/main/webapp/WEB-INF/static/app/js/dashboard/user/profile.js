@@ -55,19 +55,7 @@ $(function () {
             },
             mobile: {
                 required: false,
-                isMobile: true,
-                remote: {
-                    url: "/validate/mobile",
-                    type: 'post',
-                    data: {
-                        'mobile': function () {
-                            return $('#mobile').val()
-                        },
-                        'oldMobile': function () {
-                            return $('#old-mobile').val()
-                        }
-                    }
-                }
+                isMobile: true
             },
             phone: {
                 required: false,

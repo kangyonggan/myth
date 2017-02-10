@@ -7,7 +7,7 @@
 
     <i class="ace-icon fa fa-check green"></i>
 
-    您已绑定了手机151****9571 [您的手机号可以直接用于登录、找回密码等]
+    您已绑定了手机${user.mobile} [您的手机号可以直接用于登录、找回密码等]
 
     <a href="#user/mobile/edit" class="pull-right">设置</a>
 </div>

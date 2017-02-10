@@ -54,7 +54,7 @@ public class DashboardUserMobileController extends BaseController {
 
         String mobile = user.getMobile();
         if (StringUtils.isNotEmpty(mobile)) {
-            user.setMobile(mobile.substring(0, 3) + "****" + mobile.substring(7, 10));
+            user.setMobile(mobile.substring(0, 3) + "****" + mobile.substring(7, 11));
         }
 
         model.addAttribute("user", user);
@@ -151,7 +151,7 @@ public class DashboardUserMobileController extends BaseController {
             user.setMobile(mobile);
             userService.updateUser(user);
         } else {
-            setResultMapFailure(resultMap, "短信校验码已失效");
+            setResultMapFailure(resultMap, "短信校验码不正确或已失效");
         }
 
         return resultMap;

@@ -405,6 +405,78 @@ CREATE UNIQUE INDEX id_UNIQUE
 CREATE INDEX create_ix
   ON sms (created_time);
 
+-- ----------------------------
+--  Table structure for book
+-- ----------------------------
+DROP TABLE
+IF EXISTS book;
+
+CREATE TABLE book
+(
+  id                BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  name              VARCHAR(64)                           NOT NULL
+  COMMENT '书名',
+  author            VARCHAR(32)                           NOT NULL
+  COMMENT '作者',
+  introduction      VARCHAR(512)                          NOT NULL
+  COMMENT '简介',
+  picture           VARCHAR(256)                          NOT NULL                    DEFAULT ''
+  COMMENT '首图',
+  category_code     VARCHAR(16)                           NOT NULL
+  COMMENT '书籍栏目代码',
+  category_name     VARCHAR(64)                           NOT NULL
+  COMMENT '书籍栏目名称',
+  new_chapter_id    BIGINT(20)                            NOT NULL                    DEFAULT 0
+  COMMENT '最新章节ID',
+  new_chapter_title VARCHAR(128)                          NOT NULL                    DEFAULT ''
+  COMMENT '最新章节名称',
+  is_finished       TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '是否完结:{0:未完结, 1:已完结}',
+  is_deleted        TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time      TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time      TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '书籍表';
+CREATE UNIQUE INDEX id_UNIQUE
+  ON book (id);
+CREATE INDEX author_ix
+  ON book (author);
+CREATE INDEX category_code_ix
+  ON book (category_code);
+CREATE INDEX create_ix
+  ON book (created_time);
+
+-- ----------------------------
+--  Table structure for chapter
+-- ----------------------------
+DROP TABLE
+IF EXISTS chapter;
+
+CREATE TABLE chapter
+(
+  id           BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL
+  COMMENT '主键, 自增',
+  title        VARCHAR(128)                          NOT NULL
+  COMMENT '章节名称',
+  content      LONGTEXT                              NOT NULL
+  COMMENT '章节内容',
+  is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
+  COMMENT '逻辑删除:{0:未删除, 1:已删除}',
+  created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
+  COMMENT '创建时间',
+  updated_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  COMMENT '更新时间'
+)
+  COMMENT '章节表';
+CREATE UNIQUE INDEX id_UNIQUE
+  ON chapter (id);
+CREATE INDEX create_ix
+  ON chapter (created_time);
+
 #====================初始数据====================#
 
 -- ----------------------------
@@ -491,7 +563,15 @@ INSERT INTO dictionary
 VALUES
   ('myth', '东方娇子', 'project', 0),
   ('page', '页面', 'template', 0),
-  ('content', '内容', 'attachment', 0);
+  ('content', '内容', 'attachment', 0),
+  ('xuanhuan', '玄幻小说', 'book', 0),
+  ('xiuzhen', '修真小说', 'book', 1),
+  ('dushi', '都市小说', 'book', 2),
+  ('lishi', '历史小说', 'book', 3),
+  ('wangyou', '网游小说', 'book', 4),
+  ('kehuan', '科幻小说', 'book', 5),
+  ('yanqing', '言情小说', 'book', 6),
+  ('qita', '其他小说', 'book', 7);
 
 INSERT INTO content (id, title, template, body)
 VALUES (1, '注册协议', 'page', '1.1 东方娇子的所有权和运营权归康永敢个人所有。

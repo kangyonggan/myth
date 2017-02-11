@@ -42,7 +42,7 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
             criteria.andLike("value", StringUtil.toLikeString(value));
         }
 
-        example.setOrderByClause("sort desc");
+        example.setOrderByClause("id desc");
 
         PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
         return super.selectByExample(example);

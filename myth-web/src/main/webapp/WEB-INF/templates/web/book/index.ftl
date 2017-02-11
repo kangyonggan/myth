@@ -20,7 +20,7 @@
         <ul>
             <li><a href="#book">首页</a></li>
             <li><a href="#book">玄幻小说</a></li>
-            <li><a href="#book">修正小说</a></li>
+            <li><a href="#book">修真小说</a></li>
             <li><a href="#book">都市小说</a></li>
             <li><a href="#book">历史小说</a></li>
             <li><a href="#book">网游小说</a></li>

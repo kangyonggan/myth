@@ -13,7 +13,8 @@ public enum DictionaryType {
     PROJECT("project", "项目"),
     TEMPLATE("template", "模板"),
     ATTACHMENT("attachment", "附件"),
-    TAG("tag", "文章标签");
+    TAG("tag", "文章标签"),
+    BOOK("book", "书籍类型");
 
     /**
      * 类型

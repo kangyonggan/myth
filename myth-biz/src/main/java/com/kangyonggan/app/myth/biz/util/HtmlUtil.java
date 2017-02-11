@@ -32,6 +32,11 @@ public class HtmlUtil {
             } catch (Exception e) {
                 cnt++;
                 log.error("抓取url失败, 这是第" + cnt + "次, 共" + TRY_COUNT + "次", e);
+                try {
+                    Thread.sleep(cnt * 500);
+                } catch (InterruptedException e1) {
+                    log.error(e1);
+                }
             }
         }
 

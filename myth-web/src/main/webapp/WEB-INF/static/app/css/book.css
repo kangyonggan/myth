@@ -368,9 +368,74 @@
     line-height: 22px;
     padding: 9px 0 9px 9px;
 }
+
 #book-friend a {
     color: #000000;
     display: inline-block;
     margin: 0 9px 0 0;
     text-decoration: none;
+}
+
+/*hot*/
+#book-hot {
+    height: 350px;
+    border: 3px solid #404040;
+    margin: 10px auto;
+    padding: 5px;
+    overflow: hidden;
+}
+
+#book-hot .book-item {
+    width: 315px;
+    float: left;
+    padding: 5px 0px 0px 5px;
+}
+
+#book-hot .book-item .image {
+    float: left;
+    width: 120px;
+}
+
+#book-hot .book-item .image a {
+    text-decoration: none;
+}
+
+#book-hot .book-item .image a img {
+    border: solid 1px #DDDDDD;
+    padding: 1px;
+    background-color: White;
+}
+
+#book-hot .book-item dl {
+    padding: 0px 5px 0px 0px;
+    float: right;
+    width: 180px;
+}
+
+#book-hot .book-item dl dt {
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    font-size: 14px;
+    border-bottom: dotted 1px #6191D0;
+    font-weight: bold;
+}
+
+#book-hot .book-item dl dt a {
+    color: #B3B3B3;
+    text-decoration: none;
+}
+
+#book-hot .book-item dl dd {
+    padding: 7px 0px 0px 0px;
+    line-height: 20px;
+    color: #9E9E9E;
+    text-indent: 2em;
+    height: 124px;
+    overflow: hidden;
+}
+
+.book-empty {
+    height: 300px;
+    border: 3px solid #404040;
 }

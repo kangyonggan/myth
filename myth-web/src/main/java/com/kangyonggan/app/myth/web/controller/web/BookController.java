@@ -9,6 +9,7 @@ import com.kangyonggan.app.myth.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -81,6 +82,32 @@ public class BookController extends BaseController {
         model.addAttribute("active30books", active30books);
         model.addAttribute("new30books", new30books);
         return getPathIndex();
+    }
+
+    /**
+     * 书籍栏目
+     *
+     * @param categoryCode
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{categoryCode:[\\w]+}", method = RequestMethod.GET)
+    public String category(@PathVariable("categoryCode") String categoryCode, Model model) {
+        // 导航栏
+        List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
+
+        Dictionary category = dictionaryService.findDictionaryByCodeAndType(categoryCode, DictionaryType.BOOK.getType());
+        List<Book> new6books = bookService.findNewBooksByCategory(categoryCode, 6);
+        List<Book> active30books = bookService.findActiveBooksByCategory(categoryCode, 30);
+        List<Book> old30books = bookService.findOldBooksByCategory(categoryCode, 30);
+
+        model.addAttribute("categories", categories);
+        model.addAttribute("category", category);
+        model.addAttribute("new6books", new6books);
+        model.addAttribute("active30books", active30books);
+        model.addAttribute("old30books", old30books);
+        model.addAttribute("old30books", old30books);
+        return getPathRoot() + "/category";
     }
 
 }

@@ -59,10 +59,19 @@ public interface DictionaryService {
     List<Dictionary> findDictionariesByType(String type);
 
     /**
-     * 查找标签
+     * 批量查找字典
      *
      * @param codes
      * @return
      */
     List<Dictionary> findDictionariesByCodes(String codes);
+
+    /**
+     * 查找字典
+     *
+     * @param code
+     * @param type
+     * @return
+     */
+    Dictionary findDictionaryByCodeAndType(String code, String type);
 }

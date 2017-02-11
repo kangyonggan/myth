@@ -58,7 +58,7 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
     @Override
     @LogTime
     @CacheDelete("dictionary:id:{0:id}")
-    @CacheDeleteAll("dictionary:type")
+    @CacheDeleteAll("dictionary:type||dictionary:code")
     public void updateDictionary(Dictionary dictionary) {
         super.updateByPrimaryKeySelective(dictionary);
     }
@@ -97,5 +97,15 @@ public class DictionaryServiceImpl extends BaseService<Dictionary> implements Di
         example.createCriteria().andIn("code", Arrays.asList(codes.split(",")));
 
         return super.selectByExample(example);
+    }
+
+    @Override
+    @CacheGetOrSave("dictionary:code:{0}:type:{1}")
+    public Dictionary findDictionaryByCodeAndType(String code, String type) {
+        Dictionary dictionary = new Dictionary();
+        dictionary.setCode(code);
+        dictionary.setType(type);
+
+        return super.selectOne(dictionary);
     }
 }

@@ -39,4 +39,6 @@ VALUES
   ('myth', 'prod', 'sms.debug', 'true', '短信调试'),
 
   ('myth', 'prod', 'slow.interface.time', '5', '慢接口时间(秒)'),
-  ('myth', 'prod', 'slow.method.time', '5', '慢方法时间(秒)');
+  ('myth', 'prod', 'slow.method.time', '5', '慢方法时间(秒)'),
+
+  ('myth', 'prod', 'book.base.url', 'http://www.biquge.cn/', '书籍根路径');

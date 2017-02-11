@@ -14,7 +14,7 @@ public class HtmlUtil {
     /**
      * 失败重试次数
      */
-    private static int TRY_COUNT = 5;
+    private static int TRY_COUNT = 10;
 
     /**
      * 解析url

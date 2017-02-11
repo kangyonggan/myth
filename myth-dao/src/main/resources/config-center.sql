@@ -42,4 +42,6 @@ VALUES
   ('myth', 'local', 'sms.debug', 'true', '短信调试'),
 
   ('myth', 'local', 'slow.interface.time', '5', '慢接口时间(秒)'),
-  ('myth', 'local', 'slow.method.time', '5', '慢方法时间(秒)');
+  ('myth', 'local', 'slow.method.time', '5', '慢方法时间(秒)'),
+
+  ('myth', 'local', 'book.base.url', 'http://www.biquge.cn/', '书籍根路径');

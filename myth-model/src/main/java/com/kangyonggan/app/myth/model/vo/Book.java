@@ -1,9 +1,10 @@
 package com.kangyonggan.app.myth.model.vo;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.Data;
 
 @Data
 @Table(name = "book")
@@ -36,6 +37,11 @@ public class Book implements Serializable {
     private String picture;
 
     /**
+     * 地址
+     */
+    private String url;
+
+    /**
      * 书籍栏目代码
      */
     @Column(name = "category_code")
@@ -48,10 +54,10 @@ public class Book implements Serializable {
     private String categoryName;
 
     /**
-     * 最新章节ID
+     * 最新章节URL
      */
-    @Column(name = "new_chapter_id")
-    private Long newChapterId;
+    @Column(name = "new_chapter_url")
+    private String newChapterUrl;
 
     /**
      * 最新章节名称

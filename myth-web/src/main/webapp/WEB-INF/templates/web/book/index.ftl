@@ -19,16 +19,11 @@
     <div id="book-navbar">
         <ul>
             <li><a href="#book">首页</a></li>
-            <li><a href="#book">玄幻小说</a></li>
-            <li><a href="#book">修真小说</a></li>
-            <li><a href="#book">都市小说</a></li>
-            <li><a href="#book">历史小说</a></li>
-            <li><a href="#book">网游小说</a></li>
-            <li><a href="#book">科幻小说</a></li>
-            <li><a href="#book">言情小说</a></li>
-            <li><a href="#book">其他小说</a></li>
-            <li><a href="#book">全本小说</a></li>
-            <li><a href="#book">临时书架</a></li>
+            <#list categories as category>
+                <li><a href="#book/${category.code}">${category.value}</a></li>
+            </#list>
+            <li><a href="#book/finished">全本小说</a></li>
+            <li><a href="#book/temp">临时书架</a></li>
         </ul>
     </div>
 

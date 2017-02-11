@@ -423,12 +423,14 @@ CREATE TABLE book
   COMMENT '简介',
   picture           VARCHAR(256)                          NOT NULL                    DEFAULT ''
   COMMENT '首图',
+  url               VARCHAR(128)                          NOT NULL
+  COMMENT '地址',
   category_code     VARCHAR(16)                           NOT NULL
   COMMENT '书籍栏目代码',
   category_name     VARCHAR(64)                           NOT NULL
   COMMENT '书籍栏目名称',
-  new_chapter_id    BIGINT(20)                            NOT NULL                    DEFAULT 0
-  COMMENT '最新章节ID',
+  new_chapter_url   VARCHAR(64)                           NOT NULL                    DEFAULT ''
+  COMMENT '最新章节URL',
   new_chapter_title VARCHAR(128)                          NOT NULL                    DEFAULT ''
   COMMENT '最新章节名称',
   is_finished       TINYINT                               NOT NULL                    DEFAULT 0
@@ -443,6 +445,8 @@ CREATE TABLE book
   COMMENT '书籍表';
 CREATE UNIQUE INDEX id_UNIQUE
   ON book (id);
+CREATE UNIQUE INDEX url_UNIQUE
+  ON book (url);
 CREATE INDEX author_ix
   ON book (author);
 CREATE INDEX category_code_ix
@@ -571,7 +575,8 @@ VALUES
   ('wangyou', '网游小说', 'book', 4),
   ('kehuan', '科幻小说', 'book', 5),
   ('yanqing', '言情小说', 'book', 6),
-  ('qita', '其他小说', 'book', 7);
+  ('qita', '其他小说', 'book', 7),
+  ('quanben', '全本小说', 'book', 8);
 
 INSERT INTO content (id, title, template, body)
 VALUES (1, '注册协议', 'page', '1.1 东方娇子的所有权和运营权归康永敢个人所有。

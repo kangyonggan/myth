@@ -78,6 +78,7 @@
         <commons-net.version>3.5</commons-net.version>
         <lombok.version>1.16.8</lombok.version>
         <pegdown.version>1.6.0</pegdown.version>
+        <jsoup.version>1.9.2</jsoup.version>
         <aliyun.core>2.4.2</aliyun.core>
         <aliyun.sms>3.0.0-rc1</aliyun.sms>
     </properties>
@@ -413,6 +414,11 @@
                 <groupId>org.pegdown</groupId>
                 <artifactId>pegdown</artifactId>
                 <version>${pegdown.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.aliyun</groupId>

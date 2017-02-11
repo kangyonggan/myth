@@ -10,9 +10,10 @@
         <result column="author" property="author" jdbcType="VARCHAR"/>
         <result column="introduction" property="introduction" jdbcType="VARCHAR"/>
         <result column="picture" property="picture" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
         <result column="category_code" property="categoryCode" jdbcType="VARCHAR"/>
         <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
-        <result column="new_chapter_id" property="newChapterId" jdbcType="BIGINT"/>
+        <result column="new_chapter_url" property="newChapterUrl" jdbcType="VARCHAR"/>
         <result column="new_chapter_title" property="newChapterTitle" jdbcType="VARCHAR"/>
         <result column="is_finished" property="isFinished" jdbcType="TINYINT"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>

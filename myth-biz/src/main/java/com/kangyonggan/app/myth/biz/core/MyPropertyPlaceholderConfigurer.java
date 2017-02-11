@@ -62,8 +62,8 @@ public class MyPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigur
             JSONObject object = jsonArray.getJSONObject(i);
             log.info("正在存储配置:{}", object);
 
-            String name = object.getString("name");
-            String value = object.getString("value");
+            String name = object.getString("name").trim();
+            String value = object.getString("value").trim();
 
             System.setProperty(name, value);
             PropertiesUtil.putProperties(name, value);

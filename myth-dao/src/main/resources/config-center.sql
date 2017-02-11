@@ -13,7 +13,7 @@ VALUES
   ('myth', 'local', 'cdn.server', 'http://cdn.kangyonggan.com', 'cdn加速服务器'),
 
   ('myth', 'local', 'jdbc.driver', 'com.mysql.jdbc.Driver', 'jdbc驱动'),
-  ('myth', 'local', 'jdbc.password', '********', 'jdbc密码'),
+  ('myth', 'local', 'jdbc.password', '123456', 'jdbc密码'),
   ('myth', 'local', 'jdbc.url', 'jdbc:mysql://127.0.0.1:3306/myth?useUnicode=true&characterEncoding=UTF-8', 'jdbc地址'),
   ('myth', 'local', 'jdbc.username', 'root', 'jdbc用户名'),
 
@@ -28,7 +28,7 @@ VALUES
   ('myth', 'local', 'redis.maxIdle', '100', 'redis最大等待数'),
   ('myth', 'local', 'redis.maxTotal', '1000', 'redis最大连接数'),
   ('myth', 'local', 'redis.minIdle', '50', 'redis最小等待数'),
-  ('myth', 'local', 'redis.password', '******', 'redis密码'),
+  ('myth', 'local', 'redis.password', '123456', 'redis密码'),
   ('myth', 'local', 'redis.port', '6379', 'redis端口'),
   ('myth', 'local', 'redis.prefix', 'myth', 'redis的key的前缀'),
   ('myth', 'local', 'redis.testOnBorrow', 'true', 'redis测试支持'),

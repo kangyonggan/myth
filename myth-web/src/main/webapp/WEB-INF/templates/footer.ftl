@@ -13,7 +13,7 @@
             <a href="${ctx}/upload/blog.xml" target="_blank">
                 <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
             </a>
-            <a href="#book">
+            <a href="${ctx}/#book" target="_blank">
                 <i class="ace-icon fa fa-book green bigger-150"></i>
             </a>
         </div>

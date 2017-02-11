@@ -1,11 +1,17 @@
 package com.kangyonggan.app.myth.biz.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.myth.biz.service.BookService;
 import com.kangyonggan.app.myth.mapper.BookMapper;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
+import com.kangyonggan.app.myth.model.constants.AppConstants;
 import com.kangyonggan.app.myth.model.vo.Book;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
 
 /**
  * @author kangyonggan
@@ -30,5 +36,52 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
     @LogTime
     public void saveBook(Book book) {
         super.insertSelective(book);
+    }
+
+    @Override
+    @LogTime
+    public List<Book> findNewBooksByCategory(String categoryCode, int limit) {
+        Example example = new Example(Book.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(1, limit);
+        return super.selectByExample(example);
+    }
+
+    @Override
+    @LogTime
+    public List<Book> findOldBooksByCategory(String categoryCode, int limit) {
+        Example example = new Example(Book.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+
+        PageHelper.startPage(1, limit);
+        return super.selectByExample(example);
+    }
+
+    @Override
+    @LogTime
+    public List<Book> findActiveBooksByCategory(String categoryCode, int limit) {
+        Example example = new Example(Book.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            criteria.andEqualTo("categoryCode", categoryCode);
+        }
+        criteria.andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+
+        example.setOrderByClause("updated_time desc");
+
+        PageHelper.startPage(1, limit);
+        return super.selectByExample(example);
     }
 }

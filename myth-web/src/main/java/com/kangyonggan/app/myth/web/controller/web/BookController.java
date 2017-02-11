@@ -1,7 +1,9 @@
 package com.kangyonggan.app.myth.web.controller.web;
 
+import com.kangyonggan.app.myth.biz.service.BookService;
 import com.kangyonggan.app.myth.biz.service.DictionaryService;
 import com.kangyonggan.app.myth.model.constants.DictionaryType;
+import com.kangyonggan.app.myth.model.vo.Book;
 import com.kangyonggan.app.myth.model.vo.Dictionary;
 import com.kangyonggan.app.myth.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class BookController extends BaseController {
     @Autowired
     private DictionaryService dictionaryService;
 
+    @Autowired
+    private BookService bookService;
+
     /**
      * 书籍首页
      *
@@ -31,9 +36,50 @@ public class BookController extends BaseController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
+        // 导航栏
         List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
 
+        // 最新4本书籍 order by id desc
+        List<Book> new4books = bookService.findNewBooksByCategory(null, 4);
+
+        // 最老9本书籍 order by id asc
+        List<Book> old9books = bookService.findOldBooksByCategory(null, 9);
+
+        // 玄幻小说13本
+        List<Book> xuanhuan13books = bookService.findNewBooksByCategory("xuanhuan", 13);
+
+        // 修真小说13本
+        List<Book> xiuzhen13books = bookService.findNewBooksByCategory("xiuzhen", 13);
+
+        // 都市小说13本
+        List<Book> dushi13books = bookService.findNewBooksByCategory("dushi", 13);
+
+        // 历史小说13本
+        List<Book> lishi13books = bookService.findNewBooksByCategory("lishi", 13);
+
+        // 网游小说13本
+        List<Book> wangyou13books = bookService.findNewBooksByCategory("wangyou", 13);
+
+        // 科幻小说13本
+        List<Book> kehuan13books = bookService.findNewBooksByCategory("kehuan", 13);
+
+        // 最近更新小说列表30本 order by updatedTime desc
+        List<Book> active30books = bookService.findActiveBooksByCategory(null, 30);
+
+        // 最新入库小说30本 order by id desc
+        List<Book> new30books = bookService.findNewBooksByCategory(null, 30);
+
         model.addAttribute("categories", categories);
+        model.addAttribute("new4books", new4books);
+        model.addAttribute("old9books", old9books);
+        model.addAttribute("xuanhuan13books", xuanhuan13books);
+        model.addAttribute("xiuzhen13books", xiuzhen13books);
+        model.addAttribute("dushi13books", dushi13books);
+        model.addAttribute("lishi13books", lishi13books);
+        model.addAttribute("wangyou13books", wangyou13books);
+        model.addAttribute("kehuan13books", kehuan13books);
+        model.addAttribute("active30books", active30books);
+        model.addAttribute("new30books", new30books);
         return getPathIndex();
     }
 

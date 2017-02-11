@@ -22,7 +22,6 @@
             <#list categories as category>
                 <li><a href="#book/${category.code}">${category.value}</a></li>
             </#list>
-            <li><a href="#book/finished">全本小说</a></li>
             <li><a href="#book/temp">临时书架</a></li>
         </ul>
     </div>

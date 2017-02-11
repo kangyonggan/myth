@@ -84,4 +84,28 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
         PageHelper.startPage(1, limit);
         return super.selectByExample(example);
     }
+
+    @Override
+    @LogTime
+    public List<Book> findBooks4engine(String categoryCode, String bookUrl, int pageNum) {
+        Book book = new Book();
+        book.setIsDeleted(AppConstants.IS_DELETED_NO);
+        book.setIsFinished((byte) 0);
+
+        if (StringUtils.isNotEmpty(categoryCode)) {
+            book.setCategoryCode(categoryCode);
+        }
+        if (StringUtils.isNotEmpty(bookUrl)) {
+            book.setUrl(bookUrl);
+        }
+
+        PageHelper.startPage(pageNum, 100);
+        return super.select(book);
+    }
+
+    @Override
+    @LogTime
+    public void updateBook(Book book) {
+        super.updateByPrimaryKeySelective(book);
+    }
 }

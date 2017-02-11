@@ -137,9 +137,9 @@ public class BookEngine {
         // 简介
         String introduction = bookDoc.select("#intro p").get(0).html();
         // 最新章节
-        String newChapterTitle = bookDoc.select("#info p a").get(2).html();
-        String newChapterUrl = bookDoc.select("#info p a").get(2).attr("href");
-        newChapterUrl = newChapterUrl.substring(0, newChapterUrl.lastIndexOf("."));
+//        String newChapterTitle = bookDoc.select("#info p a").get(2).html();
+//        String newChapterUrl = bookDoc.select("#info p a").get(2).attr("href");
+//        newChapterUrl = newChapterUrl.substring(0, newChapterUrl.lastIndexOf("."));
 
         // 是否完结
         String status = bookDoc.select("#info p").get(1).html();
@@ -153,8 +153,8 @@ public class BookEngine {
         book.setCategoryName(category.getValue());
         book.setPicture(fmimg);
         book.setIntroduction(introduction);
-        book.setNewChapterUrl(newChapterUrl);
-        book.setNewChapterTitle(newChapterTitle);
+//        book.setNewChapterUrl(newChapterUrl);
+//        book.setNewChapterTitle(newChapterTitle);
         book.setIsFinished(isFinished);
 
         bookService.saveBook(book);

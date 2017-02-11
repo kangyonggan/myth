@@ -419,11 +419,24 @@
     font-size: 14px;
     border-bottom: dotted 1px #6191D0;
     font-weight: bold;
+    color: #B3B3B3;
+}
+
+#book-hot .book-item dl dt span {
+    float: right;
+    display: inline-block;
+    width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #book-hot .book-item dl dt a {
-    color: #B3B3B3;
+    display: inline-block;
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-decoration: none;
+    float: left;
 }
 
 #book-hot .book-item dl dd {

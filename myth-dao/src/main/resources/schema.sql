@@ -468,6 +468,8 @@ CREATE TABLE chapter
   COMMENT '章节名称',
   content      LONGTEXT                              NOT NULL
   COMMENT '章节内容',
+  book_url     VARCHAR(128)                          NOT NULL
+  COMMENT '书籍地址',
   is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
   COMMENT '逻辑删除:{0:未删除, 1:已删除}',
   created_time TIMESTAMP                             NOT NULL                    DEFAULT CURRENT_TIMESTAMP
@@ -478,6 +480,8 @@ CREATE TABLE chapter
   COMMENT '章节表';
 CREATE UNIQUE INDEX id_UNIQUE
   ON chapter (id);
+CREATE INDEX book_url_ix
+  ON chapter (book_url);
 CREATE INDEX create_ix
   ON chapter (created_time);
 

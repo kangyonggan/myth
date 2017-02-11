@@ -51,4 +51,21 @@ public interface BookService {
      * @return
      */
     List<Book> findActiveBooksByCategory(String categoryCode, int limit);
+
+    /**
+     * 查找书籍4更新章节
+     *
+     * @param categoryCode
+     * @param bookUrl
+     * @param pageNum
+     * @return
+     */
+    List<Book> findBooks4engine(String categoryCode, String bookUrl, int pageNum);
+
+    /**
+     * 更新书籍
+     *
+     * @param book
+     */
+    void updateBook(Book book);
 }

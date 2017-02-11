@@ -21,6 +21,12 @@ public class Chapter implements Serializable {
     private String title;
 
     /**
+     * 书籍地址
+     */
+    @Column(name = "book_url")
+    private String bookUrl;
+
+    /**
      * 逻辑删除:{0:未删除, 1:已删除}
      */
     @Column(name = "is_deleted")
@@ -44,4 +50,16 @@ public class Chapter implements Serializable {
     private String content;
 
     private static final long serialVersionUID = 1L;
+
+    @Override
+    public String toString() {
+        return "Chapter{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", bookUrl='" + bookUrl + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", createdTime=" + createdTime +
+                ", updatedTime=" + updatedTime +
+                '}';
+    }
 }

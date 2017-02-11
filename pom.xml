@@ -13,7 +13,7 @@
 
     <properties>
         <!--app-->
-        <log4j2.home>/Users/kyg/logs/cmscc</log4j2.home>
+        <log4j2.home>/home/kyg/logs/myth</log4j2.home>
         <!--Plugins-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <compiler.level>1.8</compiler.level>

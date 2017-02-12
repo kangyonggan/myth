@@ -2,6 +2,7 @@ package com.kangyonggan.app.myth.biz.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.myth.biz.service.BookService;
+import com.kangyonggan.app.myth.biz.util.StringUtil;
 import com.kangyonggan.app.myth.mapper.BookMapper;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
@@ -117,5 +118,22 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
         book.setIsDeleted(AppConstants.IS_DELETED_NO);
 
         return super.selectOne(book);
+    }
+
+    @Override
+    @LogTime
+    public List<Book> searchBooks(String key, int pageNum) {
+        Example example = new Example(Book.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (StringUtils.isNotEmpty(key)) {
+            criteria.andLike("name", StringUtil.toLikeString(key));
+            Example.Criteria criteria2 = example.createCriteria();
+            criteria2.andLike("author", StringUtil.toLikeString(key));
+            example.or(criteria2);
+        }
+        example.setOrderByClause("id desc");
+
+        PageHelper.startPage(pageNum, 20);
+        return super.selectByExample(example);
     }
 }

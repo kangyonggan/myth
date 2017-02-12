@@ -1,5 +1,6 @@
 package com.kangyonggan.app.myth.web.controller.web;
 
+import com.github.pagehelper.PageInfo;
 import com.kangyonggan.app.myth.biz.service.BookService;
 import com.kangyonggan.app.myth.biz.service.ChapterService;
 import com.kangyonggan.app.myth.biz.service.DictionaryService;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -158,6 +160,28 @@ public class BookController extends BaseController {
         model.addAttribute("nextChapter", nextChapter);
         model.addAttribute("categories", categories);
         return getPathRoot() + "/chapter";
+    }
+
+    /**
+     * 搜索小说
+     *
+     * @param pageNum
+     * @param key
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public String search(@RequestParam(value = "p", required = false, defaultValue = "1") int pageNum,
+                         @RequestParam(value = "key", required = false, defaultValue = "") String key,
+                         Model model) {
+        // 导航栏
+        List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
+        List<Book> books = bookService.searchBooks(key.trim(), pageNum);
+        PageInfo<Book> page = new PageInfo(books);
+
+        model.addAttribute("page", page);
+        model.addAttribute("categories", categories);
+        return getPathRoot() + "/search";
     }
 
 }

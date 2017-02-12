@@ -76,4 +76,13 @@ public interface BookService {
      * @return
      */
     Book findBookByUrl(String url);
+
+    /**
+     * 搜索小说
+     *
+     * @param key
+     * @param pageNum
+     * @return
+     */
+    List<Book> searchBooks(String key, int pageNum);
 }

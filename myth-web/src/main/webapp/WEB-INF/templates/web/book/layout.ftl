@@ -1,4 +1,5 @@
 <#assign ctx="${(rca.contextPath)!''}">
+<#assign key = RequestParameters.key!'' />
 
 <link rel="stylesheet" href="${ctx}/static/app/css/book.css"/>
 
@@ -11,8 +12,8 @@
         </div>
 
         <form action="#book/search" method="get" novalidate class="pull-right">
-            <input type="text" id="search-key" name="key" placeholder="输入需要搜索的小说名或作者名"/>
-            <button class="btn btn-inverse btn-sm">&nbsp;&nbsp;搜&nbsp;&nbsp;&nbsp;&nbsp;索&nbsp;&nbsp;</button>
+            <input type="text" id="search-key" name="key" value="${key}" placeholder="输入需要搜索的小说名或作者名"/>
+            <button data-toggle="search-submit" class="btn btn-inverse btn-sm">&nbsp;&nbsp;搜&nbsp;&nbsp;&nbsp;&nbsp;索&nbsp;&nbsp;</button>
         </form>
     </div>
 
@@ -28,9 +29,9 @@
 
     <div class="space-6"></div>
 
-<@block name="main"/>
+    <@block name="main"/>
 
-    <div class="space-6"></div>
+    <div class="space-6" style="clear: both"></div>
 
     <div id="book-friend">
         友情链接：
@@ -45,4 +46,5 @@
     </div>
 </div>
 
+<script src="${ctx}/static/app/js/web/book/search.js"></script>
 <@block name="script"/>

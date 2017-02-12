@@ -2,6 +2,8 @@
 
 <div class="col-xs-offset-0 col-sm-offset-1 col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
     <div class="space-10"></div>
+    <h1 class="center">${chapter.title}</h1>
+    <div class="space-16"></div>
     <div style="font-size: 22px;">
     ${chapter.content}
     </div>

@@ -2,11 +2,11 @@ package com.kangyonggan.app.myth.web.controller.web;
 
 import com.kangyonggan.app.myth.biz.engine.BookEngine;
 import com.kangyonggan.app.myth.biz.engine.ChapterEngine;
+import com.kangyonggan.app.myth.biz.service.DictionaryService;
+import com.kangyonggan.app.myth.model.constants.DictionaryType;
+import com.kangyonggan.app.myth.model.vo.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author kangyonggan
@@ -22,12 +22,24 @@ public class EngineController {
     @Autowired
     private ChapterEngine chapterEngine;
 
+    @Autowired
+    private DictionaryService dictionaryService;
+
     /**
      * 更新书籍
      */
     @RequestMapping(value = "book", method = RequestMethod.GET)
     public void updateBook() {
         bookEngine.execute();
+    }
+
+    /**
+     * 更新书籍
+     */
+    @RequestMapping(value = "book/{url:[\\d]+}", method = RequestMethod.GET)
+    public void updateBook(@PathVariable("url") String url) {
+        Dictionary category = dictionaryService.findDictionaryByCodeAndType("qita", DictionaryType.BOOK.getType());
+        bookEngine.updateBook(url, category);
     }
 
     /**

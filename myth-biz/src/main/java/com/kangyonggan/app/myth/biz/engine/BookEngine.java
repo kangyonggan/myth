@@ -120,7 +120,7 @@ public class BookEngine {
      * @param url
      * @param category
      */
-    private void updateBook(String url, Dictionary category) {
+    public void updateBook(String url, Dictionary category) {
         Document bookDoc = HtmlUtil.parseUrl(BOOK_BASE_URL + "book/" + url);
 
         if (bookDoc == null) {

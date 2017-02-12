@@ -13,7 +13,7 @@
         </div>
         <div class="r">
             <h1>${book.name}</h1>
-            <p>作&nbsp;&nbsp;&nbsp;&nbsp;者：猫腻</p>
+            <p>作&nbsp;&nbsp;&nbsp;&nbsp;者：${book.author}</p>
             <p>状&nbsp;&nbsp;&nbsp;&nbsp;态：<#if book.isFinished==1>已完结<#else>连载中</#if></p>
             <p>最后更新：${book.updatedTime?datetime}</p>
             <p>最新章节：

@@ -19,6 +19,8 @@
                 </li>
             </#list>
         </ul>
+        <div class="space-10"></div>
+        <@c.pagination url="#book/search" param="key=${key}"/>
     </#if>
 </@override>
 

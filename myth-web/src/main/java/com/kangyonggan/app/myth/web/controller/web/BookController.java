@@ -135,4 +135,29 @@ public class BookController extends BaseController {
         return getPathRoot() + "/book";
     }
 
+    /**
+     * 章节详情
+     *
+     * @param url
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{url:[\\d]+}/chapter/{id:[\\d]+}", method = RequestMethod.GET)
+    public String chapter(@PathVariable("url") String url, @PathVariable("id") Long id, Model model) {
+        // 导航栏
+        List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
+        Book book = bookService.findBookByUrl(url);
+        Chapter chapter = chapterService.findChapterById(id);
+        Chapter prevChapter = chapterService.findPrevChapter(id, url);
+        Chapter nextChapter = chapterService.findNextChapter(id, url);
+
+        model.addAttribute("book", book);
+        model.addAttribute("chapter", chapter);
+        model.addAttribute("prevChapter", prevChapter);
+        model.addAttribute("nextChapter", nextChapter);
+        model.addAttribute("categories", categories);
+        return getPathRoot() + "/chapter";
+    }
+
 }

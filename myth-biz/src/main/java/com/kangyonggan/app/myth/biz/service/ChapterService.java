@@ -31,4 +31,30 @@ public interface ChapterService {
      * @return
      */
     List<Chapter> findChaptersByBookUrl(String bookUrl);
+
+    /**
+     * 查找章节
+     *
+     * @param id
+     * @return
+     */
+    Chapter findChapterById(Long id);
+
+    /**
+     * 查找上一章节
+     *
+     * @param id
+     * @param bookUrl
+     * @return
+     */
+    Chapter findPrevChapter(Long id, String bookUrl);
+
+    /**
+     * 查找下一章节
+     *
+     * @param id
+     * @param bookUrl
+     * @return
+     */
+    Chapter findNextChapter(Long id, String bookUrl);
 }

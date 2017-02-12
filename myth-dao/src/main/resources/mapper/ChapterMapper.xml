@@ -13,4 +13,24 @@
         <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
         <result column="content" property="content" jdbcType="LONGVARCHAR"/>
     </resultMap>
+
+    <select id="findPrevChapter" resultMap="BaseResultMap">
+        SELECT id, title
+        FROM chapter
+        <where>
+            id &lt; #{id}
+            AND book_url = #{bookUrl}
+        </where>
+        limit 1
+    </select>
+
+    <select id="findNextChapter" resultMap="BaseResultMap">
+        SELECT id, title
+        FROM chapter
+        <where>
+            id &gt; #{id}
+            AND book_url = #{bookUrl}
+        </where>
+        limit 1
+    </select>
 </mapper>

@@ -1,9 +1,11 @@
 package com.kangyonggan.app.myth.web.controller.web;
 
 import com.kangyonggan.app.myth.biz.service.BookService;
+import com.kangyonggan.app.myth.biz.service.ChapterService;
 import com.kangyonggan.app.myth.biz.service.DictionaryService;
 import com.kangyonggan.app.myth.model.constants.DictionaryType;
 import com.kangyonggan.app.myth.model.vo.Book;
+import com.kangyonggan.app.myth.model.vo.Chapter;
 import com.kangyonggan.app.myth.model.vo.Dictionary;
 import com.kangyonggan.app.myth.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class BookController extends BaseController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private ChapterService chapterService;
 
     /**
      * 书籍首页
@@ -91,7 +96,7 @@ public class BookController extends BaseController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "{categoryCode:[\\w]+}", method = RequestMethod.GET)
+    @RequestMapping(value = "category/{categoryCode:[\\w]+}", method = RequestMethod.GET)
     public String category(@PathVariable("categoryCode") String categoryCode, Model model) {
         // 导航栏
         List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
@@ -108,6 +113,26 @@ public class BookController extends BaseController {
         model.addAttribute("old30books", old30books);
         model.addAttribute("old30books", old30books);
         return getPathRoot() + "/category";
+    }
+
+    /**
+     * 书籍详情
+     *
+     * @param url
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "{url:[\\d]+}", method = RequestMethod.GET)
+    public String book(@PathVariable("url") String url, Model model) {
+        // 导航栏
+        List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
+        Book book = bookService.findBookByUrl(url);
+        List<Chapter> chapters = chapterService.findChaptersByBookUrl(url);
+
+        model.addAttribute("book", book);
+        model.addAttribute("chapters", chapters);
+        model.addAttribute("categories", categories);
+        return getPathRoot() + "/book";
     }
 
 }

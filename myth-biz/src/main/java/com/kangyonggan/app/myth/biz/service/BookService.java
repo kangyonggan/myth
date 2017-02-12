@@ -68,4 +68,12 @@ public interface BookService {
      * @param book
      */
     void updateBook(Book book);
+
+    /**
+     * 查找书籍
+     *
+     * @param url
+     * @return
+     */
+    Book findBookByUrl(String url);
 }

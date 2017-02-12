@@ -452,3 +452,98 @@
     height: 300px;
     border: 3px solid #404040;
 }
+
+/*info*/
+#book-info {
+    height: 280px;
+    border: 2px solid #404040;
+    overflow: hidden;
+}
+
+#book-info .bread {
+    border-bottom: #404040 1px solid;
+    text-align: left;
+    padding: 0px 10px;
+    line-height: 40px;
+    height: 40px;
+    background-color: #f5f5f5;
+}
+
+#book-info .info .l {
+    width: 150px;
+    float: left;
+    padding: 12px 15px;
+    background: #f5f5f5;
+    margin: 20px 0 0 20px;
+}
+
+#book-info .info .l img {
+    border: medium none;
+}
+
+#book-info .info .r {
+    float: right;
+    width: 780px;
+    height: 270px;
+}
+
+#book-info .info .r h1 {
+    font-family: 黑体;
+    font-size: 28px;
+    font-weight: 700;
+    padding: 1px;
+}
+
+#book-info .info .r > p {
+    height: 15px;
+    line-height: 15px;
+    width: 350px;
+    overflow: hidden;
+    float: left;
+    font-size: 15px;
+}
+
+#book-info .info .r .intro {
+    float: left;
+    margin-top: 10px;
+}
+
+#book-info .info .r .intro > p {
+    padding-right: 10px;
+    height: 94px;
+    overflow: hidden;
+}
+
+/*chapters*/
+#book-chapters {
+    border: 2px solid #404040;
+    list-style: none;
+    margin-left: 0;
+    height: auto;
+    padding-left: 10px;
+}
+
+#book-chapters li {
+    display: inline-block;
+    width: 310px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px dotted #CCC;
+    margin-bottom: 5px;
+}
+
+#book-chapters li a {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    font-size: 13px;
+    text-align: left;
+    text-indent: 10px;
+}
+
+.empty-chapter {
+    height: 100px;
+    line-height: 100px;
+    font-size: 16px;
+    text-align: center;
+}

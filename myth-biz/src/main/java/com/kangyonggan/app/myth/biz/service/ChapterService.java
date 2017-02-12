@@ -2,6 +2,8 @@ package com.kangyonggan.app.myth.biz.service;
 
 import com.kangyonggan.app.myth.model.vo.Chapter;
 
+import java.util.List;
+
 /**
  * @author kangyonggan
  * @since 2017/2/12
@@ -21,4 +23,12 @@ public interface ChapterService {
      * @param bookUrl
      */
     void deleteChaptersByBookUrl(String bookUrl);
+
+    /**
+     * 查找书籍章节
+     *
+     * @param bookUrl
+     * @return
+     */
+    List<Chapter> findChaptersByBookUrl(String bookUrl);
 }

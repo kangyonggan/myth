@@ -20,15 +20,15 @@
         <ul>
             <li><a href="#book">首页</a></li>
         <#list categories as category>
-            <li><a href="#book/${category.code}">${category.value}</a></li>
+            <li><a href="#book/category/${category.code}">${category.value}</a></li>
         </#list>
-            <li><a href="#book/temp">临时书架</a></li>
+            <li><a href="#book/category/temp">临时书架</a></li>
         </ul>
     </div>
 
     <div class="space-6"></div>
 
-    <@block name="main"/>
+<@block name="main"/>
 
     <div class="space-6"></div>
 

@@ -108,4 +108,14 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
     public void updateBook(Book book) {
         super.updateByPrimaryKeySelective(book);
     }
+
+    @Override
+    @LogTime
+    public Book findBookByUrl(String url) {
+        Book book = new Book();
+        book.setUrl(url);
+        book.setIsDeleted(AppConstants.IS_DELETED_NO);
+
+        return super.selectOne(book);
+    }
 }

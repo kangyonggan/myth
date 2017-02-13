@@ -98,7 +98,9 @@ public class ChapterEngine {
                 Element chapter = chapters.get(i);
                 String chapterUrl = chapter.attr("href");
                 chapterUrl = chapterUrl.substring(chapterUrl.lastIndexOf("/") + 1, chapterUrl.lastIndexOf("."));
-                processChapter(chapterUrl, book);
+                if (!processChapter(chapterUrl, book)) {
+                    break;
+                }
             }
         } else {
             // 新书，从头更新
@@ -106,7 +108,9 @@ public class ChapterEngine {
                 Element chapter = chapters.get(i);
                 String chapterUrl = chapter.attr("href");
                 chapterUrl = chapterUrl.substring(chapterUrl.lastIndexOf("/") + 1, chapterUrl.lastIndexOf("."));
-                processChapter(chapterUrl, book);
+                if (!processChapter(chapterUrl, book)) {
+                    break;
+                }
             }
         }
 
@@ -126,10 +130,10 @@ public class ChapterEngine {
      * @param chapterUrl
      * @param book
      */
-    private void processChapter(String chapterUrl, Book book) {
+    private boolean processChapter(String chapterUrl, Book book) {
         Document chapterDoc = HtmlUtil.parseUrl(BOOK_BASE_URL + "book/" + book.getUrl() + "/" + chapterUrl + ".html");
         if (chapterDoc == null) {
-            return;
+            return false;
         }
 
         String title = chapterDoc.select(".bookname h1").html().trim();
@@ -148,6 +152,7 @@ public class ChapterEngine {
         } catch (Exception e) {
             log.error("重复保存章节{}", chapter);
         }
+        return true;
     }
 }
 

@@ -22,6 +22,6 @@ public class BookEngineTest extends AbstractServiceTest {
 
     @Test
     public void testUpdateBookNewChaper() {
-        bookEngine.updateBookNewChaper(categoryCode, bookUrl);
+        bookEngine.updateBookNewChaper(null, null);
     }
 }

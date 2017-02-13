@@ -64,9 +64,15 @@ public class EngineController {
      * @param bookUrl
      */
     @RequestMapping(value = "chapter", method = RequestMethod.GET)
-    public void updateChapter(@RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
+    public String updateChapter(@RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
                               @RequestParam(value = "bookUrl", required = false, defaultValue = "") String bookUrl) {
-        chapterEngine.execute(categoryCode, bookUrl);
+        new Thread(){
+            @Override
+            public void run() {
+                chapterEngine.execute(categoryCode, bookUrl);
+            }
+        }.start();
+        return "正在拉取章节，可能需要一些时间，请稍后查看！";
     }
 
     /**

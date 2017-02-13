@@ -63,7 +63,7 @@
                     </li>
                 </ul>
             <#else>
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav hidden-xs">
                     <li>
                         <a href="${ctx}/dashboard">工作台</a>
                     </li>
@@ -72,7 +72,7 @@
         </@shiro.user>
 
         <@shiro.guest>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav hidden-xs">
                 <li>
                     <a href="#login">登录</a>
                 </li>

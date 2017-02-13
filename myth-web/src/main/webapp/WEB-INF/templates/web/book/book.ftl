@@ -17,12 +17,10 @@
             <p>状&nbsp;&nbsp;&nbsp;&nbsp;态：<#if book.isFinished==1>已完结<#else>连载中</#if></p>
             <p>最后更新：${book.updatedTime?datetime}</p>
             <p>最新章节：
-                <#if book.newChapterUrl==''>
-                    <#if book.isLocked==1>
-                        <a href="javascript:">正在拉取</a>
-                    <#else>
-                        <a href="${ctx}/engine/chapter?bookUrl=${book.url}" target="_blank">点此拉取</a>
-                    </#if>
+                <#if book.isLocked==1>
+                    <a href="javascript:">正在拉取</a>
+                <#elseif book.newChapterUrl==''>
+                    <a href="${ctx}/engine/chapter?bookUrl=${book.url}" target="_blank">点此拉取</a>
                 <#else>
                     <a href="#book/${book.url}/chapter/${book.newChapterUrl}"
                        target="_blank">${book.newChapterTitle}</a>

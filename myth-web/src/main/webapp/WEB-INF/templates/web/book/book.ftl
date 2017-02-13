@@ -18,7 +18,7 @@
             <p>最后更新：${book.updatedTime?datetime}</p>
             <p>最新章节：
                 <#if book.isLocked==1>
-                    <a href="javascript:">正在拉取</a>
+                    <a href="javascript:" class="red">正在拉取</a>
                 <#elseif book.newChapterUrl==''>
                     <a href="${ctx}/engine/chapter?bookUrl=${book.url}" target="_blank">点此拉取</a>
                 <#else>

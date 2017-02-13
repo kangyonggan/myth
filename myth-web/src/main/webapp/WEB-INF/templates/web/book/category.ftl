@@ -42,7 +42,7 @@
                                 <a href="#book/${book.url}" target="_blank">${book.name}</a>
                             </span>
                             <#if book.isLocked==1>
-                                <span class="s3">
+                                <span class="s3 red">
                                 正在拉取...
                             </span>
                             <#elseif book.newChapterUrl==''>

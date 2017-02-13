@@ -223,7 +223,7 @@
                             </span>
                         <#if book.newChapterUrl==''>
                             <span class="s3">
-                                <a href="${ctx}/engine/book/${book.url}"
+                                <a href="${ctx}/engine/chapter?bookUrl=${book.url}"
                                    target="_blank">点此拉取</a>
                             </span>
                         <#else>

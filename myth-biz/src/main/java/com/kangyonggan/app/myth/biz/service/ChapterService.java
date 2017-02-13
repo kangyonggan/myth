@@ -18,27 +18,12 @@ public interface ChapterService {
     void saveChapter(Chapter chapter);
 
     /**
-     * 删除书籍的所有章节
-     *
-     * @param bookUrl
-     */
-    void deleteChaptersByBookUrl(String bookUrl);
-
-    /**
      * 查找书籍章节
      *
      * @param bookUrl
      * @return
      */
     List<Chapter> findChaptersByBookUrl(String bookUrl);
-
-    /**
-     * 查找章节
-     *
-     * @param id
-     * @return
-     */
-    Chapter findChapterById(Long id);
 
     /**
      * 查找上一章节
@@ -61,10 +46,10 @@ public interface ChapterService {
     /**
      * 查找最新章节
      *
-     * @param url
+     * @param bookUrl
      * @return
      */
-    Chapter findNewChapter(String url);
+    Chapter findNewChapter(String bookUrl);
 
     /**
      * 查找章节

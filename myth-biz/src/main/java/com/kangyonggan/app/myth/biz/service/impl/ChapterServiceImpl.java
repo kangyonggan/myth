@@ -29,15 +29,6 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
 
     @Override
     @LogTime
-    public void deleteChaptersByBookUrl(String bookUrl) {
-        Chapter chapter = new Chapter();
-        chapter.setBookUrl(bookUrl);
-
-        super.delete(chapter);
-    }
-
-    @Override
-    @LogTime
     public List<Chapter> findChaptersByBookUrl(String bookUrl) {
         Example example = new Example(Chapter.class);
         example.createCriteria().andEqualTo("bookUrl", bookUrl).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
@@ -45,12 +36,6 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
 
         example.setOrderByClause("id asc");
         return super.selectByExample(example);
-    }
-
-    @Override
-    @LogTime
-    public Chapter findChapterById(Long id) {
-        return super.selectByPrimaryKey(id);
     }
 
     @Override
@@ -67,8 +52,8 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
 
     @Override
     @LogTime
-    public Chapter findNewChapter(String url) {
-        return chapterMapper.findNewChapter(url);
+    public Chapter findNewChapter(String bookUrl) {
+        return chapterMapper.findNewChapter(bookUrl);
     }
 
     @Override

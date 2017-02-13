@@ -96,7 +96,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
             criteria.andEqualTo("categoryCode", categoryCode);
         }
         if (StringUtils.isNotEmpty(bookUrl)) {
-            criteria.andEqualTo("bookUrl", bookUrl);
+            criteria.andEqualTo("url", bookUrl);
         }
         criteria.andEqualTo("isFinished", 0);
         criteria.andEqualTo("isLocked", 0);

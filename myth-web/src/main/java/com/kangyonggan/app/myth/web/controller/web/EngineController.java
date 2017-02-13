@@ -31,25 +31,6 @@ public class EngineController {
     @Autowired
     private BookService bookService;
 
-    public EngineController() {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(5000);
-                    // 1. 解锁
-                    bookService.updateAllLocks();
-                    log.info("所有书籍已解锁");
-
-                    // 2. 更新最新章节
-                    bookEngine.updateBookNewChaper(null, null);
-                } catch (InterruptedException e) {
-                    log.error(e);
-                }
-            }
-        }.start();
-    }
-
     /**
      * 更新书籍
      */
@@ -86,6 +67,19 @@ public class EngineController {
     public void updateChapter(@RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
                               @RequestParam(value = "bookUrl", required = false, defaultValue = "") String bookUrl) {
         chapterEngine.execute(categoryCode, bookUrl);
+    }
+
+    /**
+     * 初始化，解锁+校正
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public void init() {
+        // 1. 解锁
+        bookService.updateAllLocks();
+        log.info("所有书籍已解锁");
+
+        // 2. 更新最新章节
+        bookEngine.updateBookNewChaper(null, null);
     }
 
 }

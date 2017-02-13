@@ -468,6 +468,8 @@ CREATE TABLE chapter
   COMMENT '章节名称',
   content      LONGTEXT                              NOT NULL
   COMMENT '章节内容',
+  url          VARCHAR(128)                          NOT NULL
+  COMMENT '章节地址',
   book_url     VARCHAR(128)                          NOT NULL
   COMMENT '书籍地址',
   is_deleted   TINYINT                               NOT NULL                    DEFAULT 0
@@ -480,10 +482,16 @@ CREATE TABLE chapter
   COMMENT '章节表';
 CREATE UNIQUE INDEX id_UNIQUE
   ON chapter (id);
+CREATE UNIQUE INDEX url_UNIQUE
+  ON chapter (url);
 CREATE INDEX book_url_ix
   ON chapter (book_url);
 CREATE INDEX create_ix
   ON chapter (created_time);
+
+ALTER TABLE book
+  ADD COLUMN is_locked TINYINT NOT NULL DEFAULT 0
+COMMENT '是否已锁:{0:位锁定,1:已锁定}';
 
 #====================初始数据====================#
 

@@ -51,13 +51,15 @@ public class ChapterEngine {
         int pageNum = 1;
         List<Book> books;
         do {
-            books = bookService.findBooks4engine(categoryCode, bookUrl, pageNum++);
+            books = bookService.updateBooks4engine(categoryCode, bookUrl, pageNum++);
             log.info("章节执行引擎此次查询到{}本书", books.size());
 
             for (Book book : books) {
                 updateBook(book);
                 log.info("{}的章节更新完毕", book.getName());
             }
+
+            bookService.updateBooks4unlock(books);
 
         } while (!books.isEmpty());
 
@@ -100,8 +102,6 @@ public class ChapterEngine {
             }
         } else {
             // 新书，从头更新
-            // 先删除本书的所有章节
-            chapterService.deleteChaptersByBookUrl(book.getUrl());
             for (; i < chapters.size(); i++) {
                 Element chapter = chapters.get(i);
                 String chapterUrl = chapter.attr("href");
@@ -111,15 +111,12 @@ public class ChapterEngine {
         }
 
         // 把最新章节更新到书籍中
-        Element chapter = chapters.get(i - 2);
-        String chapterTitle = chapter.html();
-        String chapterUrl = chapter.attr("href");
-        chapterUrl = chapterUrl.substring(chapterUrl.lastIndexOf("/") + 1, chapterUrl.lastIndexOf("."));
-        book.setNewChapterUrl(chapterUrl);
-        book.setNewChapterTitle(chapterTitle);
+        Chapter newChapter = chapterService.findNewChapter(book.getUrl());
+
+        book.setNewChapterUrl(newChapter.getUrl());
+        book.setNewChapterTitle(newChapter.getTitle());
 
         log.info("更新了书籍的最新章节", book);
-
         bookService.updateBook(book);
     }
 
@@ -142,10 +139,15 @@ public class ChapterEngine {
         chapter.setTitle(title);
         chapter.setContent(content);
         chapter.setBookUrl(book.getUrl());
+        chapter.setUrl(chapterUrl);
 
         log.info("更新了章节:{}", chapter);
 
-        chapterService.saveChapter(chapter);
+        try {
+            chapterService.saveChapter(chapter);
+        } catch (Exception e) {
+            log.error("重复保存章节{}", chapter);
+        }
     }
 }
 

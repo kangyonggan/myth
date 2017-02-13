@@ -60,7 +60,7 @@ public interface BookService {
      * @param pageNum
      * @return
      */
-    List<Book> findBooks4engine(String categoryCode, String bookUrl, int pageNum);
+    List<Book> updateBooks4engine(String categoryCode, String bookUrl, int pageNum);
 
     /**
      * 更新书籍
@@ -85,4 +85,12 @@ public interface BookService {
      * @return
      */
     List<Book> searchBooks(String key, int pageNum);
+
+    /**
+     * 解锁
+     *
+     * @param books
+     */
+    void updateBooks4unlock(List<Book> books);
+
 }

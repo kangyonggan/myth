@@ -7,6 +7,7 @@
         -->
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
         <result column="book_url" property="bookUrl" jdbcType="VARCHAR"/>
         <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
         <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
@@ -15,7 +16,7 @@
     </resultMap>
 
     <select id="findPrevChapter" resultMap="BaseResultMap">
-        SELECT id, title
+        SELECT id, url, title
         FROM chapter
         <where>
             id &lt; #{id}
@@ -25,12 +26,22 @@
     </select>
 
     <select id="findNextChapter" resultMap="BaseResultMap">
-        SELECT id, title
+        SELECT id, url, title
         FROM chapter
         <where>
             id &gt; #{id}
             AND book_url = #{bookUrl}
         </where>
+        limit 1
+    </select>
+
+    <select id="findNewChapter" resultMap="BaseResultMap">
+        SELECT url, title
+        FROM chapter
+        <where>
+            book_url = #{url}
+        </where>
+        ORDER BY id DESC
         limit 1
     </select>
 </mapper>

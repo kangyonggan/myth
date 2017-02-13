@@ -2,6 +2,7 @@ package com.kangyonggan.app.myth.biz.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.myth.biz.service.BookService;
+import com.kangyonggan.app.myth.biz.util.Collections3;
 import com.kangyonggan.app.myth.biz.util.StringUtil;
 import com.kangyonggan.app.myth.mapper.BookMapper;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
@@ -88,20 +89,34 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 
     @Override
     @LogTime
-    public List<Book> findBooks4engine(String categoryCode, String bookUrl, int pageNum) {
-        Book book = new Book();
-        book.setIsDeleted(AppConstants.IS_DELETED_NO);
-        book.setIsFinished((byte) 0);
-
+    public List<Book> updateBooks4engine(String categoryCode, String bookUrl, int pageNum) {
+        Example example = new Example(Book.class);
+        Example.Criteria criteria = example.createCriteria();
         if (StringUtils.isNotEmpty(categoryCode)) {
-            book.setCategoryCode(categoryCode);
+            criteria.andEqualTo("categoryCode", categoryCode);
         }
         if (StringUtils.isNotEmpty(bookUrl)) {
-            book.setUrl(bookUrl);
+            criteria.andEqualTo("bookUrl", bookUrl);
+        }
+        criteria.andEqualTo("isFinished", 0);
+        criteria.andEqualTo("isLocked", 0);
+        criteria.andEqualTo("isDeleted", 0);
+
+        PageHelper.startPage(pageNum, AppConstants.PAGE_SIZE);
+        List<Book> books = super.selectByExample(example);
+
+        if (books.isEmpty()) {
+            return books;
         }
 
-        PageHelper.startPage(pageNum, 100);
-        return super.select(book);
+        Book book = new Book();
+        book.setIsLocked((byte) 1);
+
+        Example example2 = new Example(Book.class);
+        example2.createCriteria().andIn("id", Collections3.extractToList(books, "id"));
+
+        bookMapper.updateByConditionSelective(book, example2);
+        return books;
     }
 
     @Override
@@ -135,5 +150,21 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 
         PageHelper.startPage(pageNum, 20);
         return super.selectByExample(example);
+    }
+
+    @Override
+    @LogTime
+    public void updateBooks4unlock(List<Book> books) {
+        if (books.isEmpty()) {
+            return;
+        }
+        Book book = new Book();
+        book.setIsLocked((byte) 0);
+
+        Example example = new Example(Book.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", Collections3.extractToList(books, "id"));
+
+        bookMapper.updateByConditionSelective(book, example);
     }
 }

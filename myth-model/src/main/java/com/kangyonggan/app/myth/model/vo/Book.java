@@ -72,6 +72,12 @@ public class Book implements Serializable {
     private Byte isFinished;
 
     /**
+     * 是否已锁:{0:未锁定, 1:已锁定}
+     */
+    @Column(name = "is_locked")
+    private Byte isLocked;
+
+    /**
      * 逻辑删除:{0:未删除, 1:已删除}
      */
     @Column(name = "is_deleted")

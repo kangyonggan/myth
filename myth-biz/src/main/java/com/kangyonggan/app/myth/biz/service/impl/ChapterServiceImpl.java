@@ -1,6 +1,5 @@
 package com.kangyonggan.app.myth.biz.service.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.myth.biz.service.ChapterService;
 import com.kangyonggan.app.myth.mapper.ChapterMapper;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
@@ -63,5 +62,11 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
     @LogTime
     public Chapter findNextChapter(Long id, String bookUrl) {
         return chapterMapper.findNextChapter(id, bookUrl);
+    }
+
+    @Override
+    @LogTime
+    public Chapter findNewChapter(String url) {
+        return chapterMapper.findNewChapter(url);
     }
 }

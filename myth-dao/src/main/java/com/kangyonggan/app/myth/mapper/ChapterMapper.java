@@ -24,4 +24,12 @@ public interface ChapterMapper extends MyMapper<Chapter> {
      * @return
      */
     Chapter findNextChapter(@Param("id") Long id, @Param("bookUrl") String bookUrl);
+
+    /**
+     * 查找最新章节
+     *
+     * @param url
+     * @return
+     */
+    Chapter findNewChapter(@Param("url") String url);
 }

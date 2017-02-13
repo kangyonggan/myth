@@ -1,11 +1,14 @@
 package com.kangyonggan.app.myth.biz.engine;
 
 import com.kangyonggan.app.myth.biz.service.BookService;
+import com.kangyonggan.app.myth.biz.service.ChapterService;
 import com.kangyonggan.app.myth.biz.service.DictionaryService;
 import com.kangyonggan.app.myth.biz.util.HtmlUtil;
 import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
+import com.kangyonggan.app.myth.model.annotation.LogTime;
 import com.kangyonggan.app.myth.model.constants.DictionaryType;
 import com.kangyonggan.app.myth.model.vo.Book;
+import com.kangyonggan.app.myth.model.vo.Chapter;
 import com.kangyonggan.app.myth.model.vo.Dictionary;
 import lombok.extern.log4j.Log4j2;
 import org.jsoup.nodes.Document;
@@ -36,6 +39,39 @@ public class BookEngine {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private ChapterService chapterService;
+
+    /**
+     * 书籍最新章节引擎
+     */
+    @LogTime
+    public void updateBookNewChaper() {
+        log.info("书籍最新章节引擎开始工作");
+
+        int pageNum = 1;
+        List<Book> books;
+        do {
+            books = bookService.updateBooks4engine(null, null, pageNum++);
+            log.info("书籍最新章节引擎此次查询到{}本书", books.size());
+
+            for (Book book : books) {
+                Chapter chapter = chapterService.findNewChapter(book.getUrl());
+                if (chapter == null) {
+                    chapter = new Chapter();
+                }
+                book.setNewChapterUrl(chapter.getUrl());
+                book.setNewChapterTitle(chapter.getTitle());
+
+                bookService.updateBook(book);
+            }
+
+            bookService.updateBooks4unlock(books);
+        } while (!books.isEmpty());
+
+        log.info("书籍最新章节引擎结束工作");
+    }
 
     /**
      * 执行

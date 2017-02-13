@@ -21,6 +21,11 @@ public class Chapter implements Serializable {
     private String title;
 
     /**
+     * 章节地址
+     */
+    private String url;
+
+    /**
      * 书籍地址
      */
     @Column(name = "book_url")

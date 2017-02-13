@@ -43,6 +43,14 @@ public class EngineController {
     }
 
     /**
+     * 更新书籍
+     */
+    @RequestMapping(value = "book/new/chapter", method = RequestMethod.GET)
+    public void updateBookChapter() {
+        bookEngine.updateBookNewChaper();
+    }
+
+    /**
      * 更新章节
      *
      * @param categoryCode

@@ -19,4 +19,9 @@ public class BookEngineTest extends AbstractServiceTest {
     public void testExecute() {
         bookEngine.execute();
     }
+
+    @Test
+    public void testUpdateBookNewChaper() {
+        bookEngine.updateBookNewChaper();
+    }
 }

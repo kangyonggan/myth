@@ -221,10 +221,17 @@
                         <span class="s2">
                                 <a href="#book/${book.url}" target="_blank">${book.name}</a>
                             </span>
-                        <span class="s3">
+                        <#if book.newChapterUrl==''>
+                            <span class="s3">
+                                <a href="${ctx}/engine/book/${book.url}"
+                                   target="_blank">点此拉取</a>
+                            </span>
+                        <#else>
+                            <span class="s3">
                                 <a href="#book/${book.url}/chapter/${book.newChapterUrl}"
                                    target="_blank">${book.newChapterTitle}</a>
                             </span>
+                        </#if>
                         <span class="s4">${book.author}</span>
                         <span class="s5">${book.updatedTime?string('MM-dd')}</span>
                     </li>

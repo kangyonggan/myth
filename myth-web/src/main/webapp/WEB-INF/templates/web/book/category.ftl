@@ -46,6 +46,10 @@
                                 <a href="${ctx}/engine/chapter?bookUrl=${book.url}"
                                    target="_blank">点此拉取</a>
                             </span>
+                            <#elseif book.isLocked==1>
+                                <span class="s3">
+                                正在拉取...
+                            </span>
                             <#else>
                                 <span class="s3">
                                 <a href="#book/${book.url}/chapter/${book.newChapterUrl}"

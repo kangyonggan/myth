@@ -18,9 +18,14 @@
             <p>最后更新：${book.updatedTime?datetime}</p>
             <p>最新章节：
                 <#if book.newChapterUrl==''>
-                    <a href="${ctx}/engine/chapter?bookUrl=${book.url}" target="_blank">更新</a>
+                    <#if book.isLocked==1>
+                        <a href="javascript:">正在拉取</a>
+                    <#else>
+                        <a href="${ctx}/engine/chapter?bookUrl=${book.url}" target="_blank">点此拉取</a>
+                    </#if>
                 <#else>
-                    <a href="#book/${book.url}/chapter/${book.newChapterUrl}" target="_blank">${book.newChapterTitle}</a>
+                    <a href="#book/${book.url}/chapter/${book.newChapterUrl}"
+                       target="_blank">${book.newChapterTitle}</a>
                 </#if>
             </p>
             <div class="intro">

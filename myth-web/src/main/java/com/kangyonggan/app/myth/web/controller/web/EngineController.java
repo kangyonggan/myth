@@ -2,9 +2,11 @@ package com.kangyonggan.app.myth.web.controller.web;
 
 import com.kangyonggan.app.myth.biz.engine.BookEngine;
 import com.kangyonggan.app.myth.biz.engine.ChapterEngine;
+import com.kangyonggan.app.myth.biz.service.BookService;
 import com.kangyonggan.app.myth.biz.service.DictionaryService;
 import com.kangyonggan.app.myth.model.constants.DictionaryType;
 import com.kangyonggan.app.myth.model.vo.Dictionary;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("engine")
+@Log4j2
 public class EngineController {
 
     @Autowired
@@ -24,6 +27,18 @@ public class EngineController {
 
     @Autowired
     private DictionaryService dictionaryService;
+
+    @Autowired
+    private BookService bookService;
+
+    public EngineController() {
+        // 1. 解锁
+        bookService.updateAllLocks();
+        log.info("所有书籍已解锁");
+
+        // 2. 更新最新章节
+        bookEngine.updateBookNewChaper(null, null);
+    }
 
     /**
      * 更新书籍

@@ -167,4 +167,12 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
 
         bookMapper.updateByConditionSelective(book, example);
     }
+
+    @Override
+    public void updateAllLocks() {
+        Book book = new Book();
+        book.setIsLocked((byte) 0);
+
+        bookMapper.updateByCondition(book, new Example(Book.class));
+    }
 }

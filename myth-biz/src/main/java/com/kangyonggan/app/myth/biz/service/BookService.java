@@ -93,4 +93,9 @@ public interface BookService {
      */
     void updateBooks4unlock(List<Book> books);
 
+    /**
+     * 解所有的锁
+     */
+    void updateAllLocks();
+
 }

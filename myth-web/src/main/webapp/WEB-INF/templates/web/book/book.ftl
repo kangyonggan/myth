@@ -20,7 +20,7 @@
                 <#if book.newChapterUrl==''>
                     <a href="${ctx}/engine/chapter?bookUrl=${book.url}" target="_blank">更新</a>
                 <#else>
-                    <a href="#book/${book.url}/${book.newChapterUrl}" target="_blank">${book.newChapterTitle}</a>
+                    <a href="#book/${book.url}/chapter/${book.newChapterUrl}" target="_blank">${book.newChapterTitle}</a>
                 </#if>
             </p>
             <div class="intro">

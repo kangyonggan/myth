@@ -169,6 +169,7 @@ public class BookServiceImpl extends BaseService<Book> implements BookService {
     }
 
     @Override
+    @LogTime
     public void updateAllLocks() {
         Book book = new Book();
         book.setIsLocked((byte) 0);

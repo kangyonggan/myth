@@ -32,12 +32,22 @@ public class EngineController {
     private BookService bookService;
 
     public EngineController() {
-        // 1. 解锁
-        bookService.updateAllLocks();
-        log.info("所有书籍已解锁");
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    sleep(5000);
+                    // 1. 解锁
+                    bookService.updateAllLocks();
+                    log.info("所有书籍已解锁");
 
-        // 2. 更新最新章节
-        bookEngine.updateBookNewChaper(null, null);
+                    // 2. 更新最新章节
+                    bookEngine.updateBookNewChaper(null, null);
+                } catch (InterruptedException e) {
+                    log.error(e);
+                }
+            }
+        }.start();
     }
 
     /**

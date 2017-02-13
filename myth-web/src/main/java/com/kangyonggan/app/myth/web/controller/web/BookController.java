@@ -140,19 +140,19 @@ public class BookController extends BaseController {
     /**
      * 章节详情
      *
+     * @param bookUrl
      * @param url
-     * @param id
      * @param model
      * @return
      */
-    @RequestMapping(value = "{url:[\\d]+}/chapter/{id:[\\d]+}", method = RequestMethod.GET)
-    public String chapter(@PathVariable("url") String url, @PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = "{bookUrl:[\\d]+}/chapter/{url:[\\d]+}", method = RequestMethod.GET)
+    public String chapter(@PathVariable("bookUrl") String bookUrl, @PathVariable("url") String url, Model model) {
         // 导航栏
         List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
-        Book book = bookService.findBookByUrl(url);
-        Chapter chapter = chapterService.findChapterById(id);
-        Chapter prevChapter = chapterService.findPrevChapter(id, url);
-        Chapter nextChapter = chapterService.findNextChapter(id, url);
+        Book book = bookService.findBookByUrl(bookUrl);
+        Chapter chapter = chapterService.findChapterByUrl(url);
+        Chapter prevChapter = chapterService.findPrevChapter(chapter.getId(), url);
+        Chapter nextChapter = chapterService.findNextChapter(chapter.getId(), url);
 
         model.addAttribute("book", book);
         model.addAttribute("chapter", chapter);

@@ -65,4 +65,12 @@ public interface ChapterService {
      * @return
      */
     Chapter findNewChapter(String url);
+
+    /**
+     * 查找章节
+     *
+     * @param url
+     * @return
+     */
+    Chapter findChapterByUrl(String url);
 }

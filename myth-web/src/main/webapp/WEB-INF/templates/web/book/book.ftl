@@ -35,7 +35,7 @@
 <ul id="book-chapters">
     <#if chapters?? && chapters?size gt 0>
         <#list chapters as chapter>
-            <li><a href="#book/${book.url}/chapter/${chapter.id}">${chapter.title}</a></li>
+            <li><a href="#book/${book.url}/chapter/${chapter.url}">${chapter.title}</a></li>
         </#list>
         <li><a href="${ctx}/engine/chapter?bookUrl=${book.url}" target="_blank">手动更新</a></li>
     <#else>

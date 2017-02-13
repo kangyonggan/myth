@@ -69,4 +69,12 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
     public Chapter findNewChapter(String url) {
         return chapterMapper.findNewChapter(url);
     }
+
+    @Override
+    @LogTime
+    public Chapter findChapterByUrl(String url) {
+        Chapter chapter = new Chapter();
+        chapter.setUrl(url);
+        return super.selectOne(chapter);
+    }
 }

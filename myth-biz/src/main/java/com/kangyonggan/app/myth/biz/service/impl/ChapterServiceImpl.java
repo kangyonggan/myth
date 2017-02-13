@@ -41,6 +41,7 @@ public class ChapterServiceImpl extends BaseService<Chapter> implements ChapterS
     public List<Chapter> findChaptersByBookUrl(String bookUrl) {
         Example example = new Example(Chapter.class);
         example.createCriteria().andEqualTo("bookUrl", bookUrl).andEqualTo("isDeleted", AppConstants.IS_DELETED_NO);
+        example.selectProperties("id", "url", "title");
 
         example.setOrderByClause("id asc");
         return super.selectByExample(example);

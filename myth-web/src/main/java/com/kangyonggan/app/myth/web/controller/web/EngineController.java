@@ -46,8 +46,9 @@ public class EngineController {
      * 更新书籍
      */
     @RequestMapping(value = "book/new/chapter", method = RequestMethod.GET)
-    public void updateBookChapter() {
-        bookEngine.updateBookNewChaper();
+    public void updateBookChapter(@RequestParam(value = "categoryCode", required = false, defaultValue = "") String categoryCode,
+                                  @RequestParam(value = "bookUrl", required = false, defaultValue = "") String bookUrl) {
+        bookEngine.updateBookNewChaper(categoryCode, bookUrl);
     }
 
     /**

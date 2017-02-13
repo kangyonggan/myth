@@ -45,15 +45,17 @@ public class BookEngine {
 
     /**
      * 书籍最新章节引擎
+     * @param categoryCode
+     * @param bookUrl
      */
     @LogTime
-    public void updateBookNewChaper() {
+    public void updateBookNewChaper(String categoryCode, String bookUrl) {
         log.info("书籍最新章节引擎开始工作");
 
         int pageNum = 1;
         List<Book> books;
         do {
-            books = bookService.updateBooks4engine(null, null, pageNum++);
+            books = bookService.updateBooks4engine(categoryCode, bookUrl, pageNum++);
             log.info("书籍最新章节引擎此次查询到{}本书", books.size());
 
             for (Book book : books) {

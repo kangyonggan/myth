@@ -12,13 +12,13 @@
     <div class="space-6"></div>
     <div class="center" style="font-size: 15px">
     <#if prevChapter??>
-        <a class="dark pull-left" href="#book/${book.url}/chapter/${prevChapter.id}">上一章《${prevChapter.title}》</a>
+        <a class="dark pull-left" href="#book/${book.url}/chapter/${prevChapter.url}">上一章《${prevChapter.title}》</a>
     <#else>
         <div class="pull-left">没有上一章了</div>
     </#if>
         <a class="dark" href="#book/${book.url}">章节列表</a>
     <#if nextChapter??>
-        <a class="dark pull-right" href="#book/${book.url}/chapter/${nextChapter.id}">下一章《${nextChapter.title}》</a>
+        <a class="dark pull-right" href="#book/${book.url}/chapter/${nextChapter.url}">下一章《${nextChapter.title}》</a>
     <#else>
         <div class="pull-right">没有下一章了</div>
     </#if>

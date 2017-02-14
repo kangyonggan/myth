@@ -24,3 +24,7 @@
     </#if>
     </div>
 </div>
+
+<script>
+    document.title = "${chapter.title}";
+</script>

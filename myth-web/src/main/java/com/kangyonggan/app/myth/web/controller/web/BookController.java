@@ -151,8 +151,8 @@ public class BookController extends BaseController {
         List<Dictionary> categories = dictionaryService.findDictionariesByType(DictionaryType.BOOK.getType());
         Book book = bookService.findBookByUrl(bookUrl);
         Chapter chapter = chapterService.findChapterByUrl(url);
-        Chapter prevChapter = chapterService.findPrevChapter(chapter.getId(), url);
-        Chapter nextChapter = chapterService.findNextChapter(chapter.getId(), url);
+        Chapter prevChapter = chapterService.findPrevChapter(chapter.getId(), bookUrl);
+        Chapter nextChapter = chapterService.findNextChapter(chapter.getId(), bookUrl);
 
         model.addAttribute("book", book);
         model.addAttribute("chapter", chapter);

@@ -32,18 +32,6 @@ import java.util.Map;
 public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
 
     @Setter
-    private String regionId;
-
-    @Setter
-    private String accessKeyId;
-
-    @Setter
-    private String secret;
-
-    @Setter
-    private String domain;
-
-    @Setter
     private String signName;
 
     @Setter
@@ -57,7 +45,7 @@ public class SmsServiceImpl extends BaseService<Sms> implements SmsService {
     @Autowired
     private SmsMapper smsMapper;
 
-    public SmsServiceImpl() {
+    public SmsServiceImpl(String regionId, String accessKeyId, String secret, String domain) {
         try {
             IClientProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, secret);
             DefaultProfile.addEndpoint(regionId, regionId, "Sms", domain);

@@ -5,10 +5,19 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
     <bean id="smsService" class="com.kangyonggan.app.myth.biz.service.impl.SmsServiceImpl">
-        <property name="regionId" value="${sms.regionId}"></property>
-        <property name="accessKeyId" value="${sms.accessKeyId}"></property>
-        <property name="secret" value="${sms.secret}"></property>
-        <property name="domain" value="${sms.domain}"></property>
+        <constructor-arg index="0">
+            <value>${sms.regionId}</value>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <value>${sms.accessKeyId}</value>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <value>${sms.secret}</value>
+        </constructor-arg>
+        <constructor-arg index="3">
+            <value>${sms.domain}</value>
+        </constructor-arg>
+
         <property name="signName" value="${sms.signName}"></property>
         <property name="templateCode" value="${sms.templateCode}"></property>
         <property name="debug" value="${sms.debug}"></property>

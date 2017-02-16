@@ -79,6 +79,7 @@
         <lombok.version>1.16.8</lombok.version>
         <pegdown.version>1.6.0</pegdown.version>
         <jsoup.version>1.9.2</jsoup.version>
+        <simclient.version>1.0-SNAPSHOT</simclient.version>
         <aliyun.core>2.4.2</aliyun.core>
         <aliyun.sms>3.0.0-rc1</aliyun.sms>
     </properties>
@@ -419,6 +420,17 @@
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.kangyonggan.app</groupId>
+                <artifactId>simclient</artifactId>
+                <version>${simclient.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>fastjson</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.aliyun</groupId>

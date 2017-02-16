@@ -1,7 +1,7 @@
 package com.kangyonggan.app.myth.biz.shiro;
 
 import com.kangyonggan.app.myth.biz.service.RedisService;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
+import com.kangyonggan.app.simclient.PropertiesUtil;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;

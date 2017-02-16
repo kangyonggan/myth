@@ -2,12 +2,12 @@ package com.kangyonggan.app.myth.web.controller.web;
 
 import com.kangyonggan.app.myth.biz.service.ArticleService;
 import com.kangyonggan.app.myth.biz.util.MarkdownUtil;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.biz.util.RSSFeedWriter;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
 import com.kangyonggan.app.myth.model.rss.Feed;
 import com.kangyonggan.app.myth.model.rss.FeedMessage;
 import com.kangyonggan.app.myth.model.vo.Article;
+import com.kangyonggan.app.simclient.PropertiesUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

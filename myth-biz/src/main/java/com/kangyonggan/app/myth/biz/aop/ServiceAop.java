@@ -2,13 +2,13 @@ package com.kangyonggan.app.myth.biz.aop;
 
 import com.kangyonggan.app.myth.biz.util.AopUtil;
 import com.kangyonggan.app.myth.biz.util.DateUtils;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.biz.util.Reflections;
 import com.kangyonggan.app.myth.model.annotation.Param;
 import com.kangyonggan.app.myth.model.annotation.Valid;
 import com.kangyonggan.app.myth.model.constants.CommonErrors;
 import com.kangyonggan.app.myth.model.constants.ResponseState;
 import com.kangyonggan.app.myth.model.dto.response.CommonResponse;
+import com.kangyonggan.app.simclient.PropertiesUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

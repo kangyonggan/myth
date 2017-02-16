@@ -1,47 +1,47 @@
-INSERT INTO project (code, name, push_url)
-VALUES ('myth', '东方娇子', 'http://kangyonggan.com/configcenter');
+INSERT INTO project (code, name, create_username)
+VALUES ('myth', '东方娇子', 'admin');
 
-INSERT INTO configuration (proj_code, environment, name, value, description)
+INSERT INTO conf (proj_code, env, name, value, description, create_username)
 VALUES
-  ('myth', 'local', 'app.name', '东方娇子', '项目名称'),
-  ('myth', 'local', 'app.author', '康永敢', '项目负责人'),
-  ('myth', 'local', 'app.ba.no', '皖ICP备16017743号-1', '备案号'),
+  ('myth', 'common', 'app.name', '东方娇子', '项目名称', 'admin'),
+  ('myth', 'common', 'app.author', '康永敢', '项目负责人', 'admin'),
+  ('myth', 'common', 'app.ba.no', '皖ICP备16017743号-1', '备案号', 'admin'),
 
-  ('myth', 'local', 'cache.open', 'Y', '是否开启缓存:{Y:开启,N:不开启}'),
+  ('myth', 'common', 'cache.open', 'Y', '是否开启缓存:{Y:开启,N:不开启}', 'admin'),
 
-  ('myth', 'local', 'file.root.path', '/Users/kyg/data/code/20170207/myth/myth-web/src/main/webapp/WEB-INF/', '文件上传根路径'),
-  ('myth', 'local', 'cdn.server', 'http://cdn.kangyonggan.com', 'cdn加速服务器'),
+  ('myth', 'common', 'file.root.path', '/Users/kyg/data/code/20170207/myth/myth-web/src/main/webapp/WEB-INF/', '文件上传根路径', 'admin'),
+  ('myth', 'common', 'cdn.server', 'http://cdn.kangyonggan.com', 'cdn加速服务器', 'admin'),
 
-  ('myth', 'local', 'jdbc.driver', 'com.mysql.jdbc.Driver', 'jdbc驱动'),
-  ('myth', 'local', 'jdbc.password', '123456', 'jdbc密码'),
-  ('myth', 'local', 'jdbc.url', 'jdbc:mysql://127.0.0.1:3306/myth?useUnicode=true&characterEncoding=UTF-8', 'jdbc地址'),
-  ('myth', 'local', 'jdbc.username', 'root', 'jdbc用户名'),
+  ('myth', 'common', 'jdbc.driver', 'com.mysql.jdbc.Driver', 'jdbc驱动', 'admin'),
+  ('myth', 'common', 'jdbc.password', '123456', 'jdbc密码', 'admin'),
+  ('myth', 'common', 'jdbc.url', 'jdbc:mysql://127.0.0.1:3306/myth?useUnicode=true&characterEncoding=UTF-8', 'jdbc地址', 'admin'),
+  ('myth', 'common', 'jdbc.username', 'root', 'jdbc用户名', 'admin'),
 
-  ('myth', 'local', 'mail.bufferSize', '50', '错误日志邮件缓冲区大小(单位:k)'),
-  ('myth', 'local', 'mail.host', 'smtp.163.com', '邮件服务器地址'),
-  ('myth', 'local', 'mail.password', '********', '邮件服务器密码'),
-  ('myth', 'local', 'mail.receiver', 'kangyonggan@gmail.com', '错误日志邮件接收人'),
-  ('myth', 'local', 'mail.timeout', '25000', '邮件发送超时时间'),
-  ('myth', 'local', 'mail.username', 'kangyg2017@163.com', '邮件服务器用户名'),
+  ('myth', 'common', 'mail.bufferSize', '50', '错误日志邮件缓冲区大小(单位:k)', 'admin'),
+  ('myth', 'common', 'mail.host', 'smtp.163.com', '邮件服务器地址', 'admin'),
+  ('myth', 'common', 'mail.password', '********', '邮件服务器密码', 'admin'),
+  ('myth', 'common', 'mail.receiver', 'kangyonggan@gmail.com', '错误日志邮件接收人', 'admin'),
+  ('myth', 'common', 'mail.timeout', '25000', '邮件发送超时时间', 'admin'),
+  ('myth', 'common', 'mail.username', 'kangyg2017@163.com', '邮件服务器用户名', 'admin'),
 
-  ('myth', 'local', 'redis.host', '127.0.0.1', 'redis主机'),
-  ('myth', 'local', 'redis.maxIdle', '100', 'redis最大等待数'),
-  ('myth', 'local', 'redis.maxTotal', '1000', 'redis最大连接数'),
-  ('myth', 'local', 'redis.minIdle', '50', 'redis最小等待数'),
-  ('myth', 'local', 'redis.password', '123456', 'redis密码'),
-  ('myth', 'local', 'redis.port', '6379', 'redis端口'),
-  ('myth', 'local', 'redis.prefix', 'myth', 'redis的key的前缀'),
-  ('myth', 'local', 'redis.testOnBorrow', 'true', 'redis测试支持'),
+  ('myth', 'common', 'redis.host', '127.0.0.1', 'redis主机', 'admin'),
+  ('myth', 'common', 'redis.maxIdle', '100', 'redis最大等待数', 'admin'),
+  ('myth', 'common', 'redis.maxTotal', '1000', 'redis最大连接数', 'admin'),
+  ('myth', 'common', 'redis.minIdle', '50', 'redis最小等待数', 'admin'),
+  ('myth', 'common', 'redis.password', '123456', 'redis密码', 'admin'),
+  ('myth', 'common', 'redis.port', '6379', 'redis端口', 'admin'),
+  ('myth', 'common', 'redis.prefix', 'myth', 'redis的key的前缀', 'admin'),
+  ('myth', 'common', 'redis.testOnBorrow', 'true', 'redis测试支持', 'admin'),
 
-  ('myth', 'local', 'sms.regionId', 'cn-hangzhou', '短信机房信息'),
-  ('myth', 'local', 'sms.accessKeyId', '******', '短信密钥ID'),
-  ('myth', 'local', 'sms.secret', '******', '短信密钥'),
-  ('myth', 'local', 'sms.domain', 'sms.aliyuncs.com', '短信主机'),
-  ('myth', 'local', 'sms.signName', '东方娇子', '短信签名'),
-  ('myth', 'local', 'sms.templateCode', '******', '短信模板'),
-  ('myth', 'local', 'sms.debug', 'true', '短信调试'),
+  ('myth', 'common', 'sms.regionId', 'cn-hangzhou', '短信机房信息', 'admin'),
+  ('myth', 'common', 'sms.accessKeyId', '******', '短信密钥ID', 'admin'),
+  ('myth', 'common', 'sms.secret', '******', '短信密钥', 'admin'),
+  ('myth', 'common', 'sms.domain', 'sms.aliyuncs.com', '短信主机', 'admin'),
+  ('myth', 'common', 'sms.signName', '东方娇子', '短信签名', 'admin'),
+  ('myth', 'common', 'sms.templateCode', '******', '短信模板', 'admin'),
+  ('myth', 'common', 'sms.debug', 'true', '短信调试', 'admin'),
 
-  ('myth', 'local', 'slow.interface.time', '5', '慢接口时间(秒)'),
-  ('myth', 'local', 'slow.method.time', '5', '慢方法时间(秒)'),
+  ('myth', 'common', 'slow.interface.time', '5', '慢接口时间(秒)', 'admin'),
+  ('myth', 'common', 'slow.method.time', '5', '慢方法时间(秒)', 'admin'),
 
-  ('myth', 'local', 'book.base.url', 'http://www.biquge.cn/', '书籍根路径');
+  ('myth', 'common', 'book.base.url', 'http://www.biquge.cn/', '书籍根路径', 'admin');

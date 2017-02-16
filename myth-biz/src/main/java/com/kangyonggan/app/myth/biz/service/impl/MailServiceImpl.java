@@ -2,9 +2,9 @@ package com.kangyonggan.app.myth.biz.service.impl;
 
 import com.kangyonggan.app.myth.biz.service.MailService;
 import com.kangyonggan.app.myth.biz.service.TokenService;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
 import com.kangyonggan.app.myth.model.vo.User;
+import com.kangyonggan.app.simclient.PropertiesUtil;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.extern.log4j.Log4j2;

@@ -1,7 +1,7 @@
 package com.kangyonggan.app.myth.biz.freemarker;
 
 import com.kangyonggan.app.myth.biz.shiro.SuperTag;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
+import com.kangyonggan.app.simclient.PropertiesUtil;
 import freemarker.core.Environment;
 import freemarker.template.ObjectWrapper;
 import freemarker.template.TemplateDirectiveBody;

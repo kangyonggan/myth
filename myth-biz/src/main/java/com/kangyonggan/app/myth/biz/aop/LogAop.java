@@ -1,10 +1,9 @@
 package com.kangyonggan.app.myth.biz.aop;
 
-
 import com.kangyonggan.app.myth.biz.util.AopUtil;
 import com.kangyonggan.app.myth.biz.util.DateUtils;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
+import com.kangyonggan.app.simclient.PropertiesUtil;
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

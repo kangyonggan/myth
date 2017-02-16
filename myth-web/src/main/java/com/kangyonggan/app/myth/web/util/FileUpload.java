@@ -1,8 +1,8 @@
 package com.kangyonggan.app.myth.web.util;
 
 import com.kangyonggan.app.myth.biz.util.DateUtils;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.model.constants.AppConstants;
+import com.kangyonggan.app.simclient.PropertiesUtil;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;

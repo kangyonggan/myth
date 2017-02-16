@@ -8,7 +8,6 @@ import com.aliyuncs.sms.model.v20160927.SingleSendSmsRequest;
 import com.aliyuncs.sms.model.v20160927.SingleSendSmsResponse;
 import com.github.pagehelper.PageHelper;
 import com.kangyonggan.app.myth.biz.service.SmsService;
-import com.kangyonggan.app.myth.biz.util.PropertiesUtil;
 import com.kangyonggan.app.myth.mapper.SmsMapper;
 import com.kangyonggan.app.myth.model.annotation.LogTime;
 import com.kangyonggan.app.myth.model.constants.AppConstants;

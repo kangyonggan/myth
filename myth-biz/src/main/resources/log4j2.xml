@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="300">
+    <properties>
+        <property name="LOG_HOME">/Users/kyg/logs/myth</property>
+    </properties>
+
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%logger{36}.%t:%L] - %msg%n"/>
         </Console>
-        <RollingRandomAccessFile name="AllFile" fileName="${log4j2.home}/all.log"
-                                 filePattern="${log4j2.home}/all-%d{yyyy-MM-dd}-%i.log">
+        <RollingRandomAccessFile name="AllFile" fileName="${LOG_HOME}/all.log"
+                                 filePattern="${LOG_HOME}/all-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%logger{36}.%t:%L] - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>
@@ -17,8 +21,8 @@
                 <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </RollingRandomAccessFile>
-        <RollingRandomAccessFile name="ErrorFile" fileName="${log4j2.home}/error.log"
-                                 filePattern="${log4j2.home}/error-%d{yyyy-MM-dd}-%i.log">
+        <RollingRandomAccessFile name="ErrorFile" fileName="${LOG_HOME}/error.log"
+                                 filePattern="${LOG_HOME}/error-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%logger{36}.%t:%L] - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"/>

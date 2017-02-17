@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="300">
     <properties>
-        <property name="LOG_HOME">/Users/kyg/logs/myth</property>
+        <property name="LOG_HOME">/home/kyg/logs/myth</property>
     </properties>
 
     <Appenders>

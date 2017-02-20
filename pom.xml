@@ -423,12 +423,6 @@
                 <groupId>com.kangyonggan.app</groupId>
                 <artifactId>simclient</artifactId>
                 <version>${simclient.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.alibaba</groupId>
-                        <artifactId>fastjson</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.aliyun</groupId>

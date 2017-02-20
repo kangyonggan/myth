@@ -78,6 +78,7 @@
         <pegdown.version>1.6.0</pegdown.version>
         <jsoup.version>1.9.2</jsoup.version>
         <simclient.version>1.0-SNAPSHOT</simclient.version>
+        <httpclient.version>4.5.3</httpclient.version>
         <aliyun.core>2.4.2</aliyun.core>
         <aliyun.sms>3.0.0-rc1</aliyun.sms>
     </properties>
@@ -423,6 +424,11 @@
                 <groupId>com.kangyonggan.app</groupId>
                 <artifactId>simclient</artifactId>
                 <version>${simclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.aliyun</groupId>

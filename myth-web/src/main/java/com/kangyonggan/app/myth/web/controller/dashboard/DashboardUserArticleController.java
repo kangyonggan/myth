@@ -185,9 +185,11 @@ public class DashboardUserArticleController extends BaseController {
     @RequiresPermissions("USER_ARTICLE")
     public String delete(@PathVariable("id") Long id, @PathVariable("isDeleted") String isDeleted, Model model) {
         Article article = articleService.getArticle(id);
+        String tags = article.getTags();
         article.setTags(null);
         article.setIsDeleted((byte) (isDeleted.equals("delete") ? 1 : 0));
         articleService.updateArticle(article);
+        article.setTags(tags);
 
         model.addAttribute("article", article);
         return getPathTableTr();

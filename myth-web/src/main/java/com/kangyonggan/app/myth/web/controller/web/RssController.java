@@ -46,7 +46,7 @@ public class RssController {
         Feed feed = new Feed();
         feed.setDescription("记录生活、工作和学习时的笔记心得等");
         feed.setLink("http://kangyonggan.com");
-        feed.setTitle("朕的博客");
+        feed.setTitle(PropertiesUtil.getProperties("app.name"));
         List<FeedMessage> feedMessages = feed.getFeedMessages();
 
         try {

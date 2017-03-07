@@ -1,5 +1,6 @@
 <div id="navbar" class="navbar navbar-default">
     <div class="navbar-container" id="navbar-container">
+    <@shiro.user>
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
             <span class="sr-only">Toggle sidebar</span>
 
@@ -14,12 +15,13 @@
             <a href="#index" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                <@apps>
-                ${appName}
-                </@apps>
+                    <@apps>
+                    ${appName}
+                    </@apps>
                 </small>
             </a>
         </div>
+    </@shiro.user>
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
         <@shiro.user>

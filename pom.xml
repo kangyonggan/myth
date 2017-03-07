@@ -77,7 +77,7 @@
         <lombok.version>1.16.8</lombok.version>
         <pegdown.version>1.6.0</pegdown.version>
         <jsoup.version>1.9.2</jsoup.version>
-        <simclient.version>1.0-SNAPSHOT</simclient.version>
+        <simclient.version>1.0</simclient.version>
         <httpclient.version>4.5.3</httpclient.version>
         <aliyun.core>2.4.2</aliyun.core>
         <aliyun.sms>3.0.0-rc1</aliyun.sms>

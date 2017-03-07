@@ -10,6 +10,7 @@
 
             <span class="icon-bar"></span>
         </button>
+    </@shiro.user>
 
         <div class="navbar-header pull-left">
             <a href="#index" class="navbar-brand">
@@ -21,7 +22,6 @@
                 </small>
             </a>
         </div>
-    </@shiro.user>
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
         <@shiro.user>
